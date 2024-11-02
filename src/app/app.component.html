@@ -4,12 +4,20 @@
     <button mat-button [matMenuTriggerFor]="menuEnfermedad" style="color: white">
       Enfermedad
     </button>
+    <button mat-button [matMenuTriggerFor]="menuDietas" style="color: white">
+      Dietas
+    </button>
   </div>
 </mat-toolbar>
  
 <mat-menu #menuEnfermedad="matMenu">
   <button mat-menu-item routerLink="/Enfermedades">Listar</button>
-  <button mat-menu-item routerLink="/Enfermedades/nuevo">Registrar</button>
+  <button mat-menu-item routerLink="/Enfermedades/nuevoenf">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuDietas="matMenu">
+  <button mat-menu-item routerLink="/Dietas">Listar</button>
+  <button mat-menu-item routerLink="/Dietas/nuevodt">Registrar</button>
 </mat-menu>
 
 <router-outlet></router-outlet>

@@ -25,9 +25,27 @@
       </ng-container>
    
       <ng-container matColumnDef="c5">
-         <th mat-header-cell *matHeaderCellDef> Cant Vistas </th>
+         <th mat-header-cell *matHeaderCellDef> Cantidad de Vistas </th>
          <td mat-cell *matCellDef="let element"> {{element.searchesIllneses}} </td>   
       </ng-container>
+
+      <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let element" (click)="eliminar(element.idIllness)">
+          <mat-icon style="color:#3b1d9e">delete</mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button [routerLink]="['edicionesenf',element.idIllness]">
+            <mat-icon style="color:#3b1d9e">edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

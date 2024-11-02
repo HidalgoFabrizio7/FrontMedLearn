@@ -22,12 +22,22 @@ export class IllnessService {
     return this.http.post(this.url, i);
   }
 
-  getLiist( ){
-    return this.listaCambio.asObservable();
-  }
-
   setList(listaNueva: Illness[]){
     this.listaCambio.next(listaNueva);
+  }
+  getList() {
+    return this.listaCambio.asObservable();
+  }
+  delete(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
+  }
+
+  listId(id: number) {
+    return this.http.get<Illness>(`${this.url}/${id}`);
+  }
+
+  update(il: Illness) {
+    return this.http.put(this.url, il);
   }
   
 }
