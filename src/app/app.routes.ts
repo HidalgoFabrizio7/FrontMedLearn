@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { IllnessComponent } from './components/illness/illness.component';
 import { InsertarComponent } from './components/illness/insertar/insertar.component';
 import { DietComponent } from './components/diet/diet.component';
 import { InsertardtComponent } from './components/diet/insertardt/insertardt.component';
+import {TreatmentsComponent} from './components/treatments/treatments.component';
+import {ListartrComponent} from './components/treatments/listartr/listartr.component';
+import {InsertartrComponent} from './components/treatments/insertartr/insertartr.component';
 
 export const routes: Routes = [
     {
@@ -28,6 +30,17 @@ export const routes: Routes = [
             },
         ],
     },
+    {
+        path:'Tratamientos', component:TreatmentsComponent,
+        children:[
+            {
+                path: 'nuevotr', component: InsertartrComponent,
+            },
+            {
+                path:'edicionestr/id', component:InsertartrComponent,
+            },
+        ],
+    },
+
 ];
- 
-          
+
