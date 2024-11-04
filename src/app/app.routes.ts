@@ -5,6 +5,8 @@ import { DietComponent } from './components/diet/diet.component';
 import { InsertardtComponent } from './components/diet/insertardt/insertardt.component';
 import { UsersComponent } from './components/users/users.component';
 import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
+import {TreatmentsComponent} from './components/treatments/treatments.component';
+import {InsertartrComponent} from './components/treatments/insertartr/insertartr.component';
 
 export const routes: Routes = [
     {
