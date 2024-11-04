@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     padding: 0 20px;
-    background-color: #3f51b5; /* Puedes cambiarlo por el color que prefieras */
+    background-color: rgba(25, 219, 138, 1); /* Puedes cambiarlo por el color que prefieras */
     color: white;
 }
 
@@ -39,4 +39,15 @@
 
 .mat-menu-item span {
     font-size: 1em;
+}
+
+.logoIcon{
+  width: 10vw; /* La imagen ocupará el 10% del ancho de la pantalla */
+  max-width: 40px; /* Tamaño máximo de 40px */
+  height: auto; /* Mantiene la proporción */
+  margin-right: 8px;
+}
+
+.espacio{
+  flex: 1 1 auto;
 }
