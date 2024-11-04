@@ -103,8 +103,7 @@ export class InsertarusComponent implements OnInit{
   }
 
   darDeBaja(): void {
-    this.form.get('henabled')?.setValue(false); // Cambiar el valor a false
-
+    this.form.get('henabled')?.setValue(false);
   }
 
 }

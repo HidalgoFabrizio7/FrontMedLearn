@@ -40,8 +40,15 @@ export const routes: Routes = [
           {
             path:'dardebaja/:id', component: InsertarusComponent,
           },
+          {
+            path:'registropro/:id', component: InsertarusComponent,
+          },
       ],
+    },
 
-  },
+    {
+      path:'Hospitales', component:UsersComponent,
+    },
+
 ];
 
