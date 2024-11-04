@@ -49,7 +49,7 @@ export class InsertarmedComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
-
+      codigo: ['', Validators.required],
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
 
@@ -67,8 +67,7 @@ export class InsertarmedComponent implements OnInit {
           })}
         );
       }else{
-
-      this.medS.insert(this.meddicina).subscribe((data) => {
+        this.medS.insert(this.meddicina).subscribe((data) => {
         this.medS.list().subscribe((data) => {
           this.medS.setList(data);
         });
@@ -79,12 +78,13 @@ export class InsertarmedComponent implements OnInit {
     this.router.navigate(['Medicinas']);
   }
   init() {
+
     if (this.edicion) {
       this.medS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          hcodigo: new FormControl(data.idMedicine),
-          hnombre: new FormControl(data.nameMedicine),
-          hextension: new FormControl(data.descriptionMedicine),
+          codigo: new FormControl(data.idMedicine),
+          nombre: new FormControl(data.nameMedicine),
+          descripcion: new FormControl(data.descriptionMedicine),
 
         });
       });

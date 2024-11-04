@@ -37,7 +37,7 @@ export class MedicineService {
   }
   
   update(med: Medicine) {
-    return this.http.put(this.url, med);
+    return this.http.put(`${this.url}/actualizar`, med);
   }
 
   
