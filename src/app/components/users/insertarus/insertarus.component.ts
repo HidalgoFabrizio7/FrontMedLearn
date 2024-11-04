@@ -97,9 +97,14 @@ export class InsertarusComponent implements OnInit{
           hpassword: new FormControl(data.password),
           henabled: new FormControl(data.enabled)
         });
+        this.form.get('henabled')?.disable();
       });
     }
   }
 
+  darDeBaja(): void {
+    this.form.get('henabled')?.setValue(false); // Cambiar el valor a false
+
+  }
 
 }
