@@ -7,6 +7,9 @@
     <button mat-button [matMenuTriggerFor]="menuDietas" style="color: white">
       Dietas
     </button>
+    <button mat-button [matMenuTriggerFor]="menuMedicinas" style="color: white">
+      Medicinas
+    </button>
   </div>
 </mat-toolbar>
  
@@ -18,6 +21,11 @@
 <mat-menu #menuDietas="matMenu">
   <button mat-menu-item routerLink="/Dietas">Listar</button>
   <button mat-menu-item routerLink="/Dietas/nuevodt">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuMedicinas="matMenu">
+  <button mat-menu-item routerLink="/Medicinas">Listar</button>
+  <button mat-menu-item routerLink="/Medicinas/nuevomed">Registrar</button>
 </mat-menu>
 
 <router-outlet></router-outlet>
