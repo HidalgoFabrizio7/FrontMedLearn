@@ -11,24 +11,33 @@
               </mat-form-field>
         
             <br />
+            <!-- nombre -->
             <mat-form-field class="example-full-width">
-                <mat-label>Enfermedad</mat-label>
+                <mat-label>Nombre de Enfermedad</mat-label>
                 <input matInput placeholder="Ej. Gripe" formControlName="hnombre" />
             </mat-form-field>
             <br />
+            <!-- text area -->
             <mat-form-field class="example-full-width">
-                <mat-label>Descripción</mat-label>
-                <input matInput placeholder="Ej. una bacteria que te enferma" formControlName="hdescripcion" />
+                <mat-label>Descripción</mat-label> 
+                <textarea
+                matInput
+                placeholder="Ej. una bacteria que te enferma"
+                formControlName="hdescripcion"
+                ></textarea>
+
             </mat-form-field>
             <br />
+            <!--subir la imagen -->
             <mat-form-field class="example-full-width">
                 <mat-label>Ruta de Imagen</mat-label>
                 <input matInput placeholder="Ej. ruta/a/la/imagen.jpg" formControlName="himage" />
             </mat-form-field>
             <br />
+            <!--contador-->
             <mat-form-field class="example-full-width">
                 <mat-label>Contador de Vistas</mat-label>
-                <input matInput type="number" placeholder="Ej. 0" formControlName="hcontador" />
+                <input matInput type="number" placeholder="Ej. 0" formControlName="hcontador" formControlName="codigo" readonly="true" />
             </mat-form-field>
             <br />
             <div class="button-container">

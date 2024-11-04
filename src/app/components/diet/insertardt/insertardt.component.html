@@ -2,49 +2,61 @@
     <div class="container" style="text-align: center;margin:5%"><h1>Registro de Dietas</h1></div>
     <div class="container" style="text-align: center">
       <form [formGroup]="form" (submit)="insertar()" >
-  
-        <mat-form-field class="example-full-width" *ngIf="edicion">
+
+        <br />
+          <!-- Código -->
+          <mat-form-field class="example-full-width" *ngIf="edicion">
           <mat-label>Código</mat-label>
           <input matInput formControlName="codigod" readonly="true"/>
-        </mat-form-field>
-  
+          </mat-form-field>
         <br />
-        <mat-form-field class="example-full-width">
+          <!-- Text area- BIEN -->
+          <mat-form-field class="example-full-width">
           <mat-label>Descripción de Dieta</mat-label>
-          <input matInput placeholder="Ejem. Preparar un jugo verde todas las mañanas" formControlName="descriptiond" />
-        </mat-form-field>
+          <textarea matInput placeholder="Ejem. Preparar un jugo verde todas las mañanas" formControlName="descriptiond" required></textarea>
+          </mat-form-field>
   
         <br />
-  
-        <mat-form-field class="example-full-width">
+          <!-- Input--BIEN -->
+          <mat-form-field class="example-full-width">
           <mat-label>Duración de la dieta</mat-label>
-          <input matInput placeholder="Ejem. 7 días"  formControlName="durationd" />
-        </mat-form-field>
+          <input matInput placeholder="Ejem. 7 días"  formControlName="durationd" required/>
+          </mat-form-field>
   
         <br />
-        <!-- Campo para la fecha de la incidencia -->
-        <mat-form-field class="example-full-width">
-            <mat-label>Comenzar dieta</mat-label>
-            <input matInput type="date" formControlName="startd"   />
+          <!--Boton de acción que se guarda la fecha 
+          <mat-form-field class="example-full-width">
+          <mat-label>Comenzar dieta</mat-label>
+          <input matInput type="date" formControlName="startd"   />
+          </mat-form-field>  
+
+        <br />  -->
+
+        
+          <!-- Botón de acción para la fecha de la incidencia 
+          <mat-form-field class="example-full-width">
+          <mat-label>Finalizar dieta</mat-label>
+          <input matInput type="date" formControlName="finalizard"   />
+          </mat-form-field> -->
+
+
+        <br />
+          <!-- Map option -->
+          <mat-form-field appearance="fill">
+          <mat-label>Nombre de Enfermedad </mat-label>
+          <mat-select formControlName="illnessd">@for(food of listaEnfermedades; track food) {
+          <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>}
+          </mat-select>
+      
+        <br />
+          <!-- Map option -->
+          <mat-label>ID del usuario</mat-label>
+          <mat-select formControlName="illnessd">@for(food of listaEnfermedades; track food) {
+          <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>}
+          </mat-select>
           </mat-form-field>
 
         <br />
-            <!-- Campo para la fecha de la incidencia -->
-        <mat-form-field class="example-full-width">
-            <mat-label>Finalizar dieta</mat-label>
-            <input matInput type="date" formControlName="finalizard"   />
-          </mat-form-field>
-
-        <br />
-
-        <br />
-
-        <mat-form-field appearance="fill">
-            <mat-label>ID del Contrato</mat-label>
-            <mat-select formControlName="illnessd">@for(food of listaEnfermedades; track food) {
-              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>}
-            </mat-select>
-        </mat-form-field>
         <div style="text-align: center;">
           <button mat-flat-button  color="warn">Registrar</button>
         </div>

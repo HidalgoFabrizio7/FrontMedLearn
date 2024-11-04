@@ -14,7 +14,7 @@ import { DietService } from '../../../services/diet.service';
 })
 export class ListardtComponent implements OnInit{
   datasource: MatTableDataSource<Diet> = new MatTableDataSource();
-  displayedColumns: string[]=['c1', 'c2', 'c3', 'c4', 'c5','c6','c7','accion01','accion02']
+  displayedColumns: string[]=['c1', 'comenzardieta', 'finalizardieta', 'c2', 'ingredientes','like','dislike','accion01','accion02']
   constructor(private dT: DietService) {}
   ngOnInit(): void {
     this.dT.list().subscribe((data)=>{
@@ -31,4 +31,47 @@ export class ListardtComponent implements OnInit{
       });
     });
   }
-}
+  
+  startDiet(diet: Diet): void {
+    diet.startDayDiet = new Date(); // Captura la fecha actual al hacer clic
+    this.dT.update(diet).subscribe(() => {
+      console.log(`Dieta con ID ${diet.idDiet} inició el ${diet.startDayDiet}`);
+      this.dT.list().subscribe((data) => {
+        this.datasource = new MatTableDataSource(data);
+      });
+    });
+  }
+
+  finishDiet(diet: Diet): void {
+    diet.finishDayDiet = new Date(); // Captura la fecha actual al hacer clic
+    this.dT.update(diet).subscribe(() => {
+      console.log(`Dieta con ID ${diet.idDiet} finalizó el ${diet.finishDayDiet}`);
+      this.dT.list().subscribe((data) => {
+        this.datasource = new MatTableDataSource(data);
+      });
+    });
+  }
+
+  addLike(diet: Diet): void {
+    diet.qualificationDiet += 1;
+    this.dT.update(diet).subscribe((data) => {
+        console.log(`Dieta con ID ${diet.idDiet} recibió un like.`);
+        this.dT.list().subscribe((data) => {
+          this.datasource = new MatTableDataSource(data);
+        });
+      });
+    }
+
+    addDislike(diet: Diet): void {
+      if (diet.qualificationDiet > 0) {
+        diet.qualificationDiet -= 1;
+        this.dT.update(diet).subscribe((data) => {
+          console.log(`Dieta con ID ${diet.idDiet} recibió un dislike.`);
+          this.dT.list().subscribe((data) => {
+            this.datasource = new MatTableDataSource(data);
+          });
+        });
+      }
+    }
+  }
+
