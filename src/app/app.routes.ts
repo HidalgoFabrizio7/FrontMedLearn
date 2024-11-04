@@ -6,6 +6,8 @@ import { DietComponent } from './components/diet/diet.component';
 import { InsertardtComponent } from './components/diet/insertardt/insertardt.component';
 import { MedicineComponent } from './components/medicine/medicine.component';
 import { InsertarmedComponent } from './components/medicine/insertarmed/insertarmed.component';
+import { UsersComponent } from './components/users/users.component';
+import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
 
 export const routes: Routes = [
     {
@@ -26,7 +28,7 @@ export const routes: Routes = [
                 path: 'nuevodt', component: InsertardtComponent,
             },
             {
-                path:'edicionesdt/id', component:InsertardtComponent,
+                path:'edicionesdt/:id', component:InsertardtComponent,
             },
         ],
     },
@@ -41,6 +43,18 @@ export const routes: Routes = [
             },
         ],
     },
+
+    {
+      path:'Usuarioss', component:UsersComponent,
+      children:[
+          {
+              path: 'nuevous', component: InsertarusComponent,
+          },
+          {
+            path:'dardebaja/:id', component: InsertarusComponent,
+          },
+      ],
+
+  },
 ];
- 
-          
+
