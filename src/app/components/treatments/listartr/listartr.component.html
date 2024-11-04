@@ -1,0 +1,50 @@
+<div class="container">
+  <div style="text-align: center;margin: 5%;"><h1>Lista de Tratamientos</h1></div>
+  <div>
+    <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> Código. </th>
+        <td mat-cell *matCellDef="let element"> {{element.idTreatment}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef> Descripción de Tratamiento </th>
+        <td mat-cell *matCellDef="let element"> {{element.descriptionTreatment}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> Comenzar Tratamiento </th>
+        <td mat-cell *matCellDef="let element"> {{element.startDayTreatment}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef> Finalizar Tratamiento  </th>
+        <td mat-cell *matCellDef="let element"> {{element.finishDayTreatment}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="c7">
+        <th mat-header-cell *matHeaderCellDef> Código de enfermedad </th>
+        <td mat-cell *matCellDef="let element"> {{element.illness.idIllness}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+        <td mat-cell *matCellDef="let element" (click)="delete(element.idTreatments)">
+          <mat-icon style="color: red;">delete</mat-icon>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef> Editar </th>
+        <td mat-cell *matCellDef="let element" [routerLink]="['edicionesdt',element.idTreatments]">
+          <mat-icon style="color: red;"> edit </mat-icon>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+  </div>
+</div>
