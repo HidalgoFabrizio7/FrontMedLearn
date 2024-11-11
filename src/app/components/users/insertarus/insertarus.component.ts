@@ -1,25 +1,34 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {StepperOrientation, MatStepperModule} from '@angular/material/stepper';
+import {BreakpointObserver} from '@angular/cdk/layout';
 import { Users } from '../../../models/Users';
 import { UsersService } from '../../../services/users.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { map, Observable } from 'rxjs';
+import {AsyncPipe} from '@angular/common';
+import { Role } from '../../../models/Role';
+import { RolesService } from '../../../services/roles.service';
+
 
 @Component({
   selector: 'app-insertarus',
   standalone: true,
   imports: [
+    MatStepperModule,
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     MatCheckboxModule,
     FormsModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    AsyncPipe
   ],
   templateUrl: './insertarus.component.html',
   styleUrl: './insertarus.component.css'
@@ -27,15 +36,46 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class InsertarusComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   userr: Users = new Users();
+  role = new Role();
   id: number = 0;
   edicion: boolean = false;
+  showCertificado: boolean = false;
+
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  stepperOrientation: Observable<StepperOrientation>;
 
   constructor(
     private uS: UsersService,
+    private rS: RolesService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private breakpointObserver: BreakpointObserver
+
+  ) {
+    this.stepperOrientation = this.breakpointObserver
+      .observe('(min-width: 800px)')
+      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+
+    this.firstFormGroup = this.formBuilder.group({
+      firstCtrl: ['', Validators.required],
+      hnombre: ['', Validators.required],
+      husername: ['', Validators.required],
+      hcorreo: ['', Validators.required],
+      hpassword: ['', Validators.required],
+    });
+
+    this.secondFormGroup = this.formBuilder.group({
+      secondCtrl: ['', Validators.required],
+    });
+
+    this.thirdFormGroup = this.formBuilder.group({
+      hcertificado: [''],
+    });
+  }
+
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -74,11 +114,18 @@ export class InsertarusComponent implements OnInit{
         });
       } else {
         //insert
+
         this.uS.insert(this.userr).subscribe((data) => {
           this.uS.list().subscribe((data) => {
             this.uS.setList(data);
           });
         });
+
+        this.uS.getidMayor().subscribe((id) => {
+          this.role.user.idUser = id;
+          this.rS.insert(this.role).subscribe();
+        });
+
       }
 
       /**/
@@ -97,9 +144,33 @@ export class InsertarusComponent implements OnInit{
           hpassword: new FormControl(data.password),
           henabled: new FormControl(data.enabled)
         });
+        this.form.get('henabled')?.disable();
       });
     }
   }
 
+  darDeBaja(): void {
+    this.form.get('henabled')?.setValue(false);
+  }
+
+  setAttributeValue(value: string): void {
+    if (value === 'NUTRICIONISTA' || value === 'DOCTOR') {
+      this.showCertificado = true;
+    } else {
+      this.showCertificado = false;
+    }
+
+    this.role.rol = value;
+  }
+
+  transferStepperDataToForm() {
+    this.form.patchValue({
+      hnombre: this.firstFormGroup.value.hnombre,
+      husername: this.firstFormGroup.value.husername,
+      hcorreo: this.firstFormGroup.value.hcorreo,
+      hpassword: this.firstFormGroup.value.hpassword,
+      hcertificado: this.thirdFormGroup.value.hcertificado,
+    });
+  }
 
 }
