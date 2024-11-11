@@ -38,8 +38,11 @@ export class UsersService {
   }
 
   searchByName(name: String) {
-    return this.http.get<Users>(`${this.url}/buscarpornombre`);
+    return this.http.get<Users[]>(`${this.url}/buscarpornombre?name=${name}`);
   }
 
+  getidMayor(){
+    return this.http.get<number>(`${this.url}/idmayor`);
+  }
 
 }
