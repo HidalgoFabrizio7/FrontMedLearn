@@ -1,6 +1,6 @@
 import { Users } from "./Users"
 
-export class Role {
+export class Hospital {
   idHospital: number=0
   nameHospital: string=""
   latitudeHospital: number=0

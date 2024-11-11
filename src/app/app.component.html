@@ -13,6 +13,9 @@
     <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: white">
       Usuarios
     </button>
+    <button mat-button [matMenuTriggerFor]="menuHospitales" style="color: white">
+      Hospitales
+    </button>
   </div>
 </mat-toolbar>
 
@@ -29,6 +32,11 @@
 <mat-menu #menuUsuarios="matMenu">
   <button mat-menu-item routerLink="/Usuarioss">Listar</button>
   <button mat-menu-item routerLink="/Usuarioss/nuevous">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuHospitales="matMenu">
+  <button mat-menu-item routerLink="/Hospitales">Listar</button>
+  <button mat-menu-item routerLink="/Hospitales/nuevohp">Registrar</button>
 </mat-menu>
 
 <router-outlet></router-outlet>

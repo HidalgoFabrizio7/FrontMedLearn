@@ -6,6 +6,8 @@ import { DietComponent } from './components/diet/diet.component';
 import { InsertardtComponent } from './components/diet/insertardt/insertardt.component';
 import { UsersComponent } from './components/users/users.component';
 import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
+import { HospitalComponent } from './components/hospital/hospital.component';
+import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
 
 export const routes: Routes = [
     {
@@ -38,16 +40,18 @@ export const routes: Routes = [
               path: 'nuevous', component: InsertarusComponent,
           },
           {
-            path:'dardebaja/:id', component: InsertarusComponent,
-          },
-          {
-            path:'registropro/:id', component: InsertarusComponent,
+            path:'modificar/:id', component: InsertarusComponent,
           },
       ],
     },
 
     {
-      path:'Hospitales', component:UsersComponent,
+      path:'Hospitales', component:HospitalComponent,
+      children:[
+        {
+            path: 'nuevohp', component: CrearhpComponent,
+        },
+    ],
     },
 
 ];
