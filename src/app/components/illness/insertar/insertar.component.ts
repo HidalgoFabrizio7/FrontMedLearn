@@ -14,6 +14,7 @@ import {
  import { MatButtonModule } from '@angular/material/button';
 import { Illness } from '../../../models/Illness';
 import { IllnessService } from '../../../services/illness.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-insertar',
@@ -25,6 +26,7 @@ import { IllnessService } from '../../../services/illness.service';
     FormsModule,
     MatSelectModule,
     MatButtonModule,
+    CommonModule
   ],
   templateUrl: './insertar.component.html',
   styleUrl: './insertar.component.css'
@@ -51,15 +53,13 @@ export class InsertarComponent implements OnInit{
       this.init();
     });
 
-
     this.form = this.formBuilder.group({
       codigo:[''],
       hnombre: ['',Validators.required],
       hdescripcion: ['',Validators.required],
       himage: ['',Validators.required],
-      hcontador: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      hcontador: ['', Validators.required],
     });
-
   }
   insertar(): void {
     if (this.form.valid) {
@@ -70,20 +70,20 @@ export class InsertarComponent implements OnInit{
       this.illness.searchesIllneses = this.form.value.hcontador;
 
       if (this.edicion) {
-        this.iS.update(this.illness).subscribe(() => {
+        this.iS.update(this.illness).subscribe((data) => {
           this.iS.list().subscribe((data) => {
             this.iS.setList(data);
           });
         });
       } else {
-        this.iS.insert(this.illness).subscribe(() => {
+        this.iS.insert(this.illness).subscribe((data) => {
           this.iS.list().subscribe((data) => {
             this.iS.setList(data);
           });
         });
       }
-      this.router.navigate(['Enfermedades']);
     }
+    this.router.navigate(['Enfermedades']);
   }
 
   init(): void {

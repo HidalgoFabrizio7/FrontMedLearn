@@ -14,8 +14,9 @@ import { DietService } from '../../../services/diet.service';
 })
 export class ListardtComponent implements OnInit{
   datasource: MatTableDataSource<Diet> = new MatTableDataSource();
-  displayedColumns: string[]=['c1', 'comenzardieta', 'finalizardieta', 'c2', 'ingredientes','like','dislike','accion01','accion02']
+  displayedColumns: string[]=['c1', 'comenzardieta', 'finalizardieta', 'c2','c3','c4', 'ingredientes','like','dislike','accion01','accion02']
   constructor(private dT: DietService) {}
+
   ngOnInit(): void {
     this.dT.list().subscribe((data)=>{
       this.datasource=new MatTableDataSource(data)
@@ -24,6 +25,7 @@ export class ListardtComponent implements OnInit{
       this.datasource=new MatTableDataSource(data)
     });
   }
+
   delete(id:number){
     this.dT.delete(id).subscribe((data)=> {
       this.dT.list().subscribe((data)=> {
@@ -73,5 +75,7 @@ export class ListardtComponent implements OnInit{
         });
       }
     }
+
+    
   }
 

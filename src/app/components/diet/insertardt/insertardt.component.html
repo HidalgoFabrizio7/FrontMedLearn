@@ -23,7 +23,6 @@
           <input matInput placeholder="Ejem. 7 días"  formControlName="durationd" required/>
           </mat-form-field>
   
-        <br />
           <!--Boton de acción que se guarda la fecha 
           <mat-form-field class="example-full-width">
           <mat-label>Comenzar dieta</mat-label>
@@ -42,17 +41,18 @@
 
         <br />
           <!-- Map option -->
-          <mat-form-field appearance="fill">
+          <mat-form-field >
           <mat-label>Nombre de Enfermedad </mat-label>
-          <mat-select formControlName="illnessd">@for(food of listaEnfermedades; track food) {
-          <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>}
+          <mat-select formControlName="illnessd">@for(illness of listaEnfermedades; track illness) {
+          <mat-option [value]="illness.idIllness">{{ illness.nameIllness }}</mat-option>}
           </mat-select>
-      
+        </mat-form-field>
         <br />
           <!-- Map option -->
-          <mat-label>ID del usuario</mat-label>
-          <mat-select formControlName="illnessd">@for(food of listaEnfermedades; track food) {
-          <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>}
+          <mat-form-field >
+          <mat-label>Nombre del doctor</mat-label>
+          <mat-select formControlName="userd">@for(user of listarNombres; track user) {
+          <mat-option [value]="user.idUser">{{ user.fullnameUser }}</mat-option>}
           </mat-select>
           </mat-form-field>
 
