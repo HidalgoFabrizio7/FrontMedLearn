@@ -57,6 +57,7 @@ export class InsertartrComponent implements OnInit{
       startd: ['', Validators.required],
       finalizard: ['', Validators.required],
       illnessd:['',Validators.required],
+      userd:['',Validators.required],
     });
   }
   insertar(): void {
@@ -67,6 +68,7 @@ export class InsertartrComponent implements OnInit{
       this.treatment.startDayTreatment = this.form.value.startd;
       this.treatment.finishDayTreatment = this.form.value.finalizard;
       this.treatment.illness.idIllness = this.form.value.illnessd;
+      this.treatment.user.idUser = this.form.value.userd;
       if(this.edicion){
         this.deS.update(this.treatment).subscribe((data) => {
           this.deS.list().subscribe((data) => {
@@ -95,6 +97,7 @@ export class InsertartrComponent implements OnInit{
           startd: new FormControl(data.startDayTreatment),
           finalizard:new FormControl(data.finishDayTreatment),
           illnessd:new FormControl(data.illness.idIllness),
+          userd:new FormControl(data.user.idUser),
         })
       })
     }
