@@ -7,7 +7,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Treatments} from '../../../models/treatments';
-import {TreatmentsService} from '../../../services/treatments.service'; //
+import {TreatmentsService} from '../../../services/treatments.service';
+import {Illness} from '../../../models/Illness';
+import {IllnessService} from '../../../services/illness.service';
+import {Users} from '../../../models/Users';
+import {UsersService} from '../../../services/users.service'; //
 
 @Component({
   selector: 'app-insertartr',
@@ -27,22 +31,20 @@ import {TreatmentsService} from '../../../services/treatments.service'; //
 export class InsertartrComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   treatment:Treatments  = new Treatments();
+  listaIllness: Illness[] = [];
+  //listaUser: Users[] = [];
   id: number = 0;
   edicion: boolean=false;
 
-  listaEnfermedades: { value: number, viewValue: string }[] = [
-    { value: 1, viewValue: '1' },
-    { value: 2, viewValue: '2'  },
-    { value: 3, viewValue: '3'  },
-    // Agrega más evaluaciones según sea necesario
-  ];
-
   constructor(
-    private deS: TreatmentsService,
+    private tS: TreatmentsService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private iS: IllnessService,
+    //private uS: UsersService
   ) {}
+
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) =>{
       this.id=data['id']
@@ -52,52 +54,61 @@ export class InsertartrComponent implements OnInit{
     });
     this.form = this.formBuilder.group({
       codigot:[''],
-      descriptiont: ['', Validators.required],
-      durationt: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      startd: ['', Validators.required],
-      finalizard: ['', Validators.required],
-      illnessd:['',Validators.required],
-      userd:['',Validators.required],
+      descriptiont: ['',Validators.required],
+      durationt: ['',Validators.required],
+      startt: ['',Validators.required],
+      finalizart: ['',Validators.required],
+      illnesst:[''],
+      //usert:[''],
     });
+
+    this.iS.list().subscribe((data) => {
+      this.listaIllness = data;
+    });
+
+    //this.uS.list().subscribe((e) => {
+    //this.listaUser = e;
+    //});
   }
   insertar(): void {
     if (this.form.valid) {
-      this.treatment.idTreatments=this.form.value.codigod;
-      this.treatment.descriptionTreatment = this.form.value.descriptiond;
-      this.treatment.durationTreatment = this.form.value.durationd;
-      this.treatment.startDayTreatment = this.form.value.startd;
-      this.treatment.finishDayTreatment = this.form.value.finalizard;
-      this.treatment.illness.idIllness = this.form.value.illnessd;
-      this.treatment.user.idUser = this.form.value.userd;
+      this.treatment.idTreatments=this.form.value.codigot;
+      this.treatment.descriptionTreatment = this.form.value.descriptiont;
+      this.treatment.durationTreatment = this.form.value.durationt;
+      this.treatment.startDayTreatment = this.form.value.startt;
+      this.treatment.finishDayTreatment = this.form.value.finalizart;
+      this.treatment.illness.idIllness = this.form.value.illnesst;
+      //this.treatment.user.idUser = this.form.value.usert;
+
       if(this.edicion){
-        this.deS.update(this.treatment).subscribe((data) => {
-          this.deS.list().subscribe((data) => {
-            this.deS.setList(data);
+        this.tS.update(this.treatment).subscribe((data) => {
+          this.tS.list().subscribe((data) => {
+            this.tS.setList(data);
           });
         });
       }else{
-        this.deS.insert(this.treatment).subscribe((data) => {
-          this.deS.list().subscribe((data) => {
-            this.deS.setList(data);
+        this.tS.insert(this.treatment).subscribe((data) => {
+          this.tS.list().subscribe((data) => {
+            this.tS.setList(data);
           });
         });
       }
 
     }
-    this.router.navigate(['Treatmentsas']);
-  }
+    this.router.navigate(['Tratamientoss']);
 
+  }
   init(){
     if(this.edicion){
-      this.deS.listId(this.id).subscribe(data=>{
+      this.tS.listId(this.id).subscribe(data=>{
         this.form=new FormGroup({
-          codigod:new FormControl(data.idTreatments),
-          descriptiond:new FormControl(data.descriptionTreatment),
-          durationd:new FormControl(data.durationTreatment),
-          startd: new FormControl(data.startDayTreatment),
-          finalizard:new FormControl(data.finishDayTreatment),
-          illnessd:new FormControl(data.illness.idIllness),
-          userd:new FormControl(data.user.idUser),
+          codigot:new FormControl(data.idTreatments),
+          descriptiont:new FormControl(data.descriptionTreatment),
+          durationt:new FormControl(data.durationTreatment),
+          startt: new FormControl(data.startDayTreatment),
+          finalizart:new FormControl(data.finishDayTreatment),
+          illnesst:new FormControl(data.illness.idIllness),
+          //usert:new FormControl(data.user.idUser),
         })
       })
     }

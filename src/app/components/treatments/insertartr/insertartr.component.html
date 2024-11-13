@@ -1,13 +1,62 @@
 <div class="title-container">
   <div class="container" style="text-align: center;margin:5%"><h1>Registro de Tratamientos</h1></div>
+
   <div class="container" style="text-align: center">
     <form [formGroup]="form" (submit)="insertar()" >
 
+
+      <!--<mat-form-field class="example-full-width">
+        <mat-label>Enfermedad</mat-label>
+        <mat-select formControlName="illnesst">
+          <mat-option *ngFor="let illness of listaIllness" [value]="illness.idIllness">
+            {{illness.nameIllness}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('illnesst')?.hasError('required')"
+        >La enfermedad es obligatoria.</mat-error>
+
+      </mat-form-field>
+      -->
+      <mat-form-field >
+        <mat-label>Enfermedad </mat-label>
+        <mat-select formControlName="illnesst">@for(illness of listaIllness; track illness) {
+          <mat-option [value]="illness.idIllness">{{ illness.nameIllness }}</mat-option>}
+        </mat-select>
+      </mat-form-field>
+
+      <!--
+      <mat-form-field >
+        <mat-label>Usuario </mat-label>
+        <mat-select formControlName="usert">@for(user of listaUser; track user) {
+          <mat-option [value]="user.idUser">{{ user.idUser }}</mat-option>}
+        </mat-select>
+      </mat-form-field>
+      -->
+
+
+      <!--<mat-form-field class="example-full-width">
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="usert">
+          <mat-option *ngFor="let user of listaUser" [value]="user.idUser">
+            {{user.fullnameUser}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('usert')?.hasError('required')"
+        >El usuario es obligatorio.</mat-error>
+      </mat-form-field>
+      -->
+
+     <!-- <mat-form-field >
+        <mat-label>Nombre de Usuario </mat-label>
+        <mat-select formControlName="usert">@for(user of listaUser; track user) {
+          <mat-option [value]="user.idUser">{{ user.idUser }}</mat-option>}
+        </mat-select>
+      </mat-form-field>
       <mat-form-field class="example-full-width" *ngIf="edicion">
         <mat-label>Código</mat-label>
         <input matInput formControlName="codigot" readonly="true"/>
       </mat-form-field>
-
+      -->
       <br />
       <mat-form-field class="example-full-width">
         <mat-label>Descripción del Tratamiento</mat-label>
@@ -37,18 +86,12 @@
 
       <br />
 
-      <br />
 
-      <mat-form-field appearance="fill">
-        <mat-label>ID del Contrato</mat-label>
-        <mat-select formControlName="illnesst">@for(food of listaEnfermedades; track food) {
-          <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>}
-        </mat-select>
-      </mat-form-field>
+        <br />
+
       <div style="text-align: center;">
-        <button mat-flat-button  color="warn">Registrar</button>
+        <button mat-flat-button  color="warn" *ngIf="!edicion">Registrar</button>
       </div>
     </form>
   </div>
 </div>
-
