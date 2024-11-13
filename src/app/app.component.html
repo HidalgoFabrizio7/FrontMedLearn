@@ -16,11 +16,8 @@
     <button mat-button [matMenuTriggerFor]="menuTratamientos" style="color: white">
       Tratamientos
     </button>
-    <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: white">
-      Usuarios
-    </button>
-    <button mat-button [matMenuTriggerFor]="menuTratamientos" style="color: white">
-      Tratamientos
+    <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
+      <mat-icon>book</mat-icon>Reportes
     </button>
   </div>
 </mat-toolbar>
@@ -41,13 +38,15 @@
 </mat-menu>
 
 <mat-menu #menuTratamientos="matMenu">
-  <button mat-menu-item routerLink="/Tratamientos">Listar</button>
-  <button mat-menu-item routerLink="/Tratamientos/nuevotr">Registrar</button>
+  <button mat-menu-item routerLink="/Tratamientoss">Listar</button>
+  <button mat-menu-item routerLink="/Tratamientoss/nuevotr">Registrar</button>
 </mat-menu>
 
-<mat-menu #menuTratamientos="matMenu">
-  <button mat-menu-item routerLink="/Tratamientos">Listar</button>
-  <button mat-menu-item routerLink="/Tratamientos/nuevotr">Registrar</button>
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/reportes">
+    <mat-icon> pie_chart</mat-icon>
+    Cantidad
+  </button>
 </mat-menu>
 
 <router-outlet></router-outlet>

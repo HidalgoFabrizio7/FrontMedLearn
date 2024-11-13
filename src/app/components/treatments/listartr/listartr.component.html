@@ -4,8 +4,8 @@
     <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef> Código. </th>
-        <td mat-cell *matCellDef="let element"> {{element.idTreatment}} </td>
+        <th mat-header-cell *matHeaderCellDef> Código </th>
+        <td mat-cell *matCellDef="let element"> {{element.idTreatments}} </td>
       </ng-container>
 
       <ng-container matColumnDef="c2">
@@ -14,28 +14,28 @@
       </ng-container>
 
       <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef> Duracion del Trataamiento </th>
+        <th mat-header-cell *matHeaderCellDef> Duracion del Tratamiento </th>
         <td mat-cell *matCellDef="let element"> {{element.durationTreatment}} </td>
       </ng-container>
 
       <ng-container matColumnDef="c4">
-        <th mat-header-cell *matHeaderCellDef> Dia Iniciado  </th>
-        <td mat-cell *matCellDef="let element"> {{element.startDayTreatment}} </td>
+        <th mat-header-cell *matHeaderCellDef> Dia Iniciado </th>
+        <td mat-cell *matCellDef="let element"> {{element.startDayTreatment }} </td>
       </ng-container>
 
       <ng-container matColumnDef="c5">
         <th mat-header-cell *matHeaderCellDef> Dia terminado </th>
-        <td mat-cell *matCellDef="let element"> {{element.finishDayTreatment}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.finishDayTreatment }} </td>
       </ng-container>
 
       <ng-container matColumnDef="c6">
         <th mat-header-cell *matHeaderCellDef> Enfermedad </th>
-        <td mat-cell *matCellDef="let element"> {{element.illness.idIllness}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.illness.nameIllness}} </td>
       </ng-container>
 
       <ng-container matColumnDef="c7">
         <th mat-header-cell *matHeaderCellDef> Usuario </th>
-        <td mat-cell *matCellDef="let element"> {{element.user.idUser}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.users.fullnameUser}} </td>
       </ng-container>
 
       <ng-container matColumnDef="accion01">
@@ -46,7 +46,7 @@
       </ng-container>
       <ng-container matColumnDef="accion02">
         <th mat-header-cell *matHeaderCellDef> Editar </th>
-        <td mat-cell *matCellDef="let element" [routerLink]="['edicionesdt',element.idTreatments]">
+        <td mat-cell *matCellDef="let element" [routerLink]="['edicionestr',element.idTreatments]">
           <mat-icon style="color: red;"> edit </mat-icon>
         </td>
       </ng-container>

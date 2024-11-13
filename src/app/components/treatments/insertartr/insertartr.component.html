@@ -1,6 +1,5 @@
 <div class="title-container">
   <div class="container" style="text-align: center;margin:5%"><h1>Registro de Tratamientos</h1></div>
-  <div class="container" style="text-align: center">
     <form [formGroup]="form" (submit)="insertar()" >
 
       <mat-form-field class="example-full-width" *ngIf="edicion">
@@ -37,18 +36,35 @@
 
       <br />
 
+      <mat-form-field class="example-full-width">
+        <mat-label>Enfermedad</mat-label>
+        <mat-select formControlName="illnesst">
+          <mat-option *ngFor="let c of listaIllness" [value]="c.idIllness">
+            {{c.nameIllness}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('illnesst')?.hasError('required')"
+        >La enfermedad es obligatoria.</mat-error>
+
+      </mat-form-field>
+
       <br />
 
-      <mat-form-field appearance="fill">
-        <mat-label>ID del Contrato</mat-label>
-        <mat-select formControlName="illnesst">@for(food of listaEnfermedades; track food) {
-          <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>}
+      <mat-form-field class="example-full-width">
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="usert">
+          <mat-option *ngFor="let c of listaUser" [value]="c.idUser">
+            {{c.fullnameUser}}
+          </mat-option>
         </mat-select>
+        <mat-error *ngIf="form.get('usert')?.hasError('required')"
+        >El usuario es obligatorio.</mat-error>
       </mat-form-field>
+        <br />
+
       <div style="text-align: center;">
-        <button mat-flat-button  color="warn">Registrar</button>
+        <button mat-flat-button  color="warn" *ngIf="!edicion">Registrar</button>
       </div>
     </form>
   </div>
-</div>
 

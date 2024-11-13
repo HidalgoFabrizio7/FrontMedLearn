@@ -7,6 +7,7 @@ import { UsersComponent } from './components/users/users.component';
 import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
 import {TreatmentsComponent} from './components/treatments/treatments.component';
 import {InsertartrComponent} from './components/treatments/insertartr/insertartr.component';
+import {ReportesComponent} from './components/reportes/reportes.component';
 
 export const routes: Routes = [
     {
@@ -32,13 +33,13 @@ export const routes: Routes = [
         ],
     },
     {
-        path:'Tratamientos', component:TreatmentsComponent,
+        path:'Tratamientoss', component:TreatmentsComponent,
         children:[
             {
                 path: 'nuevotr', component: InsertartrComponent,
             },
             {
-                path:'edicionestr/id', component:InsertartrComponent,
+                path:'edicionestr/:id', component:InsertartrComponent,
             },
         ],
     },
@@ -55,6 +56,9 @@ export const routes: Routes = [
           },
       ],
 
-  },
+    },
+    {
+      path:'reportes',component:ReportesComponent,
+    }
 ];
 
