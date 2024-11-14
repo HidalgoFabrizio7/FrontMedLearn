@@ -29,6 +29,7 @@ import { IllnessService } from '../../../services/illness.service';
   styleUrl: './insertardt.component.css'
 })
 export class InsertardtComponent implements OnInit{
+  
   form: FormGroup = new FormGroup({});
   diet:Diet  = new Diet();
   id: number = 0;
@@ -42,7 +43,7 @@ export class InsertardtComponent implements OnInit{
     private iS:IllnessService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) =>{
