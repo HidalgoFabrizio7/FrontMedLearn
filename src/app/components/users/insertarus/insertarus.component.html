@@ -55,35 +55,35 @@
   </div>
 
   <div>
-    <mat-stepper *ngIf="!edicion"
+    <mat-stepper linear="true" *ngIf="!edicion"
     class="example-stepper"
-    [orientation]="(stepperOrientation | async)!">
-    <mat-step [stepControl]="firstFormGroup" label="Fill out your name">
+    [orientation]="(stepperOrientation | async)!" #stepper>
+    <mat-step [stepControl]="firstFormGroup" label="Rellena con tus datos">
       <form [formGroup]="firstFormGroup">
         <div>
           <br />
 
           <mat-form-field class="example-full-width">
             <mat-label>Nombre Completo</mat-label>
-            <input matInput placeholder="Nombres y Apellidos" formControlName="hnombre" />
+            <input matInput placeholder="Nombres y Apellidos" formControlName="hnombre" required="true"/>
           </mat-form-field>
           <br />
 
           <mat-form-field class="example-full-width">
             <mat-label>Nombre de Usuario</mat-label>
-            <input matInput placeholder="Nombre de Usuario" formControlName="husername" />
+            <input matInput placeholder="Nombre de Usuario" formControlName="husername" required="true"/>
           </mat-form-field>
           <br />
 
           <mat-form-field class="example-full-width">
             <mat-label>Correo</mat-label>
-            <input matInput placeholder="example@gmail.com" formControlName="hcorreo" />
+            <input matInput placeholder="example@gmail.com" formControlName="hcorreo" required="true"/>
           </mat-form-field>
           <br />
 
           <mat-form-field class="example-full-width">
             <mat-label>Contraseña</mat-label>
-            <input matInput placeholder="contraseña" formControlName="hpassword" />
+            <input matInput placeholder="contraseña" formControlName="hpassword" required="true"/>
           </mat-form-field>
         </div>
         <div>
@@ -94,7 +94,7 @@
     <mat-step [stepControl]="secondFormGroup" label="Choose an option">
       <form [formGroup]="secondFormGroup">
         <div class="button-container">
-          <button mat-button matStepperNext (click)="setAttributeValue('USUARIO')">Usuario</button>
+          <button mat-button matStepperNext (click)="setAttributeValue('PACIENTE')">Usuario</button>
           <button mat-button matStepperNext (click)="setAttributeValue('NUTRICIONISTA')">Nutricionista</button>
           <button mat-button matStepperNext (click)="setAttributeValue('DOCTOR')">Doctor</button>
         </div>
@@ -107,21 +107,21 @@
             <mat-label>Certificado</mat-label>
             <input matInput placeholder="imagen" formControlName="hcertificado" />
           </mat-form-field>
-          <div>
+          <div *ngIf="complete">
             <router-outlet></router-outlet>
               <div [hidden]="route.children.length !== 0">
-                <app-crearhp></app-crearhp>
+                <app-crearhp [routerLink]="['nuevohp', role.user.idUser]"></app-crearhp>
               </div>
           </div>
         </div>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-flat-button color="warn" (click)="transferStepperDataToForm(); insertar()">Registrar</button>
+          <button mat-flat-button color="warn" [disabled]="complete" (click)="transferStepperDataToForm(); insertar()">Registrar</button>
         </div>
       </form>
+      <button mat-flat-button color="warn" (click)="enrutar()" *ngIf="complete">Terminar</button>
     </mat-step>
   </mat-stepper>
   </div>
-
 </div>
 

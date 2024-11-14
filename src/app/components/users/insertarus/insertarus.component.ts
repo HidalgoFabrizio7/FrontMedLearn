@@ -9,7 +9,7 @@ import {StepperOrientation, MatStepperModule} from '@angular/material/stepper';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import { Users } from '../../../models/Users';
 import { UsersService } from '../../../services/users.service';
-import { ActivatedRoute, Params, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import { Role } from '../../../models/Role';
@@ -31,7 +31,8 @@ import { CrearhpComponent } from '../../hospital/crearhp/crearhp.component';
     CommonModule,
     AsyncPipe,
     RouterOutlet,
-    CrearhpComponent
+    CrearhpComponent,
+    RouterLink
   ],
   templateUrl: './insertarus.component.html',
   styleUrl: './insertarus.component.css'
@@ -42,6 +43,7 @@ export class InsertarusComponent implements OnInit{
   role = new Role();
   id: number = 0;
   edicion: boolean = false;
+  complete: boolean = false;
   showCertificado: boolean = false;
 
   firstFormGroup: FormGroup;
@@ -127,11 +129,11 @@ export class InsertarusComponent implements OnInit{
           this.rS.insert(this.role).subscribe();
         });
 
+        this.complete= true
       }
 
       /**/
     }
-    this.router.navigate(['Usuarioss']);
   }
   init() {
     if (this.edicion) {
@@ -174,4 +176,7 @@ export class InsertarusComponent implements OnInit{
     });
   }
 
+  enrutar(){
+    this.router.navigate(['Usuarioss']);
+  }
 }

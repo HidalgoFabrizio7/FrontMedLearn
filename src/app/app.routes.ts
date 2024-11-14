@@ -38,6 +38,11 @@ export const routes: Routes = [
       children:[
           {
               path: 'nuevous', component: InsertarusComponent,
+              children:[
+                {
+                    path: 'nuevohp/:id', component: CrearhpComponent,
+                },
+              ],
           },
           {
             path:'modificar/:id', component: InsertarusComponent,
@@ -47,11 +52,6 @@ export const routes: Routes = [
 
     {
       path:'Hospitales', component:HospitalComponent,
-      children:[
-        {
-            path: 'nuevohp', component: CrearhpComponent,
-        },
-    ],
     },
 
 ];
