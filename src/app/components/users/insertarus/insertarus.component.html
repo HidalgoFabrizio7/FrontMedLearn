@@ -107,6 +107,12 @@
             <mat-label>Certificado</mat-label>
             <input matInput placeholder="imagen" formControlName="hcertificado" />
           </mat-form-field>
+          <div>
+            <router-outlet></router-outlet>
+              <div [hidden]="route.children.length !== 0">
+                <app-crearhp></app-crearhp>
+              </div>
+          </div>
         </div>
         <div>
           <button mat-button matStepperPrevious>Back</button>

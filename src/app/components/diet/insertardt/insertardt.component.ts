@@ -6,21 +6,23 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Diet } from '../../../models/Diet';
-import { DietService } from '../../../services/diet.service'; 
-import { ActivatedRoute, Params, Router } from '@angular/router'; //
+import { DietService } from '../../../services/diet.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { CrearhpComponent } from "../../hospital/crearhp/crearhp.component"; //
 
 @Component({
   selector: 'app-insertardt',
   standalone: true,
   imports: [
-            MatInputModule,
-            MatFormFieldModule,
-            ReactiveFormsModule,
-            FormsModule,
-            MatSelectModule,
-            MatButtonModule,
-            CommonModule,
-          ],
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatSelectModule,
+    MatButtonModule,
+    CommonModule,
+    CrearhpComponent
+],
   templateUrl: './insertardt.component.html',
   styleUrl: './insertardt.component.css'
 })
@@ -80,7 +82,7 @@ export class InsertardtComponent implements OnInit{
           });
         });
       }
-      
+
     }
     this.router.navigate(['Dietas']);
   }

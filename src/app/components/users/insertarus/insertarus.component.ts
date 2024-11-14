@@ -9,11 +9,12 @@ import {StepperOrientation, MatStepperModule} from '@angular/material/stepper';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import { Users } from '../../../models/Users';
 import { UsersService } from '../../../services/users.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterOutlet } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import { Role } from '../../../models/Role';
 import { RolesService } from '../../../services/roles.service';
+import { CrearhpComponent } from '../../hospital/crearhp/crearhp.component';
 
 
 @Component({
@@ -28,7 +29,9 @@ import { RolesService } from '../../../services/roles.service';
     FormsModule,
     MatButtonModule,
     CommonModule,
-    AsyncPipe
+    AsyncPipe,
+    RouterOutlet,
+    CrearhpComponent
   ],
   templateUrl: './insertarus.component.html',
   styleUrl: './insertarus.component.css'
@@ -51,9 +54,8 @@ export class InsertarusComponent implements OnInit{
     private rS: RolesService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,
+    public route: ActivatedRoute,
     private breakpointObserver: BreakpointObserver
-
   ) {
     this.stepperOrientation = this.breakpointObserver
       .observe('(min-width: 800px)')
@@ -114,7 +116,6 @@ export class InsertarusComponent implements OnInit{
         });
       } else {
         //insert
-
         this.uS.insert(this.userr).subscribe((data) => {
           this.uS.list().subscribe((data) => {
             this.uS.setList(data);
