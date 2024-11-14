@@ -16,6 +16,9 @@
     <button mat-button [matMenuTriggerFor]="menuHospitales" style="color: white">
       Hospitales
     </button>
+    <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
+      Reportes
+    </button>
   </div>
 </mat-toolbar>
 
@@ -39,4 +42,8 @@
   <button mat-menu-item routerLink="/Hospitales/nuevohp">Registrar</button>
 </mat-menu>
 
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/reportes">Listar</button>
+  <button mat-menu-item routerLink="/reportes/numberdietinityfinal">Reporte de dietas</button>
+</mat-menu>
 <router-outlet></router-outlet>
