@@ -30,6 +30,9 @@ export const routes: Routes = [
             {
                 path:'edicionesdt/:id', component:InsertardtComponent,
             },
+            {
+                path: ':id', component: DietComponent, // Ruta para ver detalles de la dieta de una enfermedad específica
+            },
         ],
     },
 

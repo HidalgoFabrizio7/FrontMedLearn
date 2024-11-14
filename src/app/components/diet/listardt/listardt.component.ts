@@ -2,19 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 import { Diet } from '../../../models/Diet';
 import { DietService } from '../../../services/diet.service';
+import { MatDividerModule } from '@angular/material/divider';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listardt',
   standalone: true,
-  imports: [MatTableModule, MatIconModule,RouterModule],
+  imports: [MatTableModule, MatIconModule,RouterModule, MatCardModule, MatDividerModule,CommonModule],
   templateUrl: './listardt.component.html',
   styleUrl: './listardt.component.css'
 })
 export class ListardtComponent implements OnInit{
   datasource: MatTableDataSource<Diet> = new MatTableDataSource();
-  displayedColumns: string[]=['c1', 'comenzardieta', 'finalizardieta', 'c2','c3','c4', 'ingredientes','like','dislike','accion01','accion02']
   constructor(private dT: DietService) {}
 
   ngOnInit(): void {

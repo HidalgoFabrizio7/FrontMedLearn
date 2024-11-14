@@ -18,7 +18,6 @@ import { CommonModule } from '@angular/common';
 })
 export class ListarComponent implements OnInit{
   datasource: MatTableDataSource<Illness> = new MatTableDataSource();
-  displayedColumns: string[]=['c1', 'c2', 'c3', 'c4', 'c5','accion01','accion02'];
 
   constructor(private iS:IllnessService, private router: Router){}
   
@@ -33,7 +32,7 @@ export class ListarComponent implements OnInit{
       this.loadImagesFromIndexedDB();
     });
   }
-  
+
   loadImagesFromIndexedDB() {
     const request = indexedDB.open('ImageStore', 1);
 
