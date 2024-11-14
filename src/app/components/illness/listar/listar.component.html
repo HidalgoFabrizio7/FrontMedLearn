@@ -1,59 +1,41 @@
 <div class="container">
-  <div style="text-align: center;margin: 5%;"> <h1>Lista de enfermedades</h1> </div>
+  <div style="text-align: center;margin: 5%;" class="title-container h1"> <h1 >Lista de enfermedades</h1> </div>
    
-  <div>
-    <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
-   
-      <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef> Código. </th>
-        <td mat-cell *matCellDef="let element"> {{element.idIllness}} </td>
-      </ng-container>
-   
-      <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.nameIllness}} </td>
-      </ng-container>
-   
-      <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef> Descripcion </th>
-        <td mat-cell *matCellDef="let element"> {{element.descriptionIllness}} </td>
-      </ng-container>
-   
-      <ng-container matColumnDef="c4">
-        <th mat-header-cell *matHeaderCellDef> Enfermedad </th>
-        <td mat-cell *matCellDef="let element"> {{element.imageIllness}} </td>
-      </ng-container>
-   
-      <ng-container matColumnDef="c5">
-         <th mat-header-cell *matHeaderCellDef> Cantidad de Vistas </th>
-         <td mat-cell *matCellDef="let element"> {{element.searchesIllneses}} </td>   
-      </ng-container>
+    <div class="card-container">
+      <mat-card *ngFor="let element of datasource.data" class="card">
+          <mat-card-header>
+            <button mat-raised-button color="primary" [routerLink]="['edicionesenf',element.idIllness]" class="edit-btn" style="margin-right: 5px;">
+              Editar
+              <mat-icon>edit</mat-icon>
+            </button>
 
-      <ng-container matColumnDef="accion01">
-        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-        <td mat-cell *matCellDef="let element" (click)="eliminar(element.idIllness)">
-          <mat-icon style="color:#3b1d9e">delete</mat-icon>
-        </td>
-      </ng-container>
+            <button mat-raised-button color="warn" (click)="eliminar(element.idIllness)" class="delete-btn">
+              Eliminar
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-header>
+          <mat-card-content>
+          <div *ngIf="element.imageIllness">
+            <img mat-card-image [src]="(element.imageIllness)" alt="Imagen de {{ element.nameIllness }}" class="card-image" />
+            </div>
+          </mat-card-content>
+          <mat-card-title>{{ element.nameIllness }}</mat-card-title>
+          <mat-card-content>
+          <p><strong>Descripción:</strong></p>
+          </mat-card-content>
+          <mat-card-content>
+            <p>{{ element.descriptionIllness }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="accent" [routerLink]="['/Dietas', element.idIllness]">
+              Ver más
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  
 
-      <ng-container matColumnDef="accion02">
-        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-raised-button [routerLink]="['edicionesenf',element.idIllness]">
-            <mat-icon style="color:#3b1d9e">edit</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-      
-
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    
-  </div>
-
-</div>
    
    
    

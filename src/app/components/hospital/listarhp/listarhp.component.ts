@@ -1,8 +1,8 @@
-/// <reference types="@types/google.maps" />
+//<reference types="@types/google.maps" />
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Loader } from "@googlemaps/js-api-loader";
+//import { Loader } from "@googlemaps/js-api-loader";
 import { HospitalService } from '../../../services/hospital.service';
 import { Hospital } from '../../../models/Hospital';
 import {MatCardModule} from '@angular/material/card';
@@ -27,8 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './listarhp.component.html',
   styleUrl: './listarhp.component.css'
 })
-export class ListarhpComponent implements OnInit{
-
+export class ListarhpComponent/* implements OnInit*/{
+/*
   datasource: Hospital[]=[];
   private AdvancedMarkerElement: any;
   private map!: google.maps.Map; // "!" evita que se identifique como null en algun momento porque si no sale error
@@ -108,4 +108,5 @@ export class ListarhpComponent implements OnInit{
     input.value = '';
     this.applyFilter(' ');
   }
+    */
 }

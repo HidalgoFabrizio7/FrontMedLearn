@@ -33,6 +33,8 @@ import { CommonModule } from '@angular/common';
 })
 export class InsertarComponent implements OnInit{
   form: FormGroup = new FormGroup({});
+  fileName: string = ''; 
+  imageURL: string | ArrayBuffer | null = null;
   illness: Illness = new Illness();
   id: number = 0;
   edicion: boolean = false;
@@ -61,6 +63,7 @@ export class InsertarComponent implements OnInit{
       hcontador: ['', Validators.required],
     });
   }
+
   insertar(): void {
     if (this.form.valid) {
       this.illness.idIllness = this.form.value.codigo;
@@ -82,6 +85,7 @@ export class InsertarComponent implements OnInit{
           });
         });
       }
+      console.log('Datos enviados:', this.illness);
     }
     this.router.navigate(['Enfermedades']);
   }
@@ -98,5 +102,71 @@ export class InsertarComponent implements OnInit{
         });
       });
     }
+  }
+
+  // En el método onFileSelected
+onFileSelected(event: any) {
+  const file = event.target.files[0];
+  if (file) {
+      this.fileName = this.normalizeFileName(file.name); // Normaliza el nombre del archivo
+      this.form.get('himage')!.setValue(this.fileName); // Establece el nombre del archivo en el campo `himage`
+
+      const reader = new FileReader();
+      reader.onload = () => {
+          this.imageURL = reader.result; // Previsualización de la imagen
+          this.storeImageInIndexedDB(file); // Almacenar en IndexedDB
+      };
+      reader.readAsDataURL(file);
+  }
+}
+
+  
+// Almacena la imagen en IndexedDB
+storeImageInIndexedDB(file: File) {
+  const reader = new FileReader();
+
+  reader.onload = (e: any) => {
+      const fileData = e.target.result;
+
+      // Abre la base de datos después de que el archivo se haya cargado
+      const request = indexedDB.open('ImageStore', 1);
+
+      request.onupgradeneeded = (event: any) => {
+          const db = event.target.result;
+          if (!db.objectStoreNames.contains('images')) {
+              db.createObjectStore('images', { keyPath: 'name' });
+          }
+      };
+
+      request.onsuccess = (event: any) => {
+          const db = event.target.result;
+          const transaction = db.transaction('images', 'readwrite');
+          const store = transaction.objectStore('images');
+
+          store.put({ name: this.fileName, data: fileData }); // Guarda la imagen en IndexedDB
+          transaction.oncomplete = () => {
+              console.log(`Imagen "${this.fileName}" almacenada en IndexedDB`);
+          };
+
+          transaction.onerror = (err:Event) => {
+              console.error('Error al almacenar la imagen en IndexedDB:', err);
+          };
+      };
+
+      request.onerror = (event) => {
+          console.error('Error al abrir IndexedDB:', event);
+      };
+  };
+
+  reader.readAsDataURL(file); // Lee el archivo antes de abrir la transacción
+}
+
+
+
+  normalizeFileName(fileName: string): string {
+    return fileName
+      .toLowerCase()                // Convierte a minúsculas
+      .replace(/[^a-z0-9.]/g, '-')  // Reemplaza caracteres especiales con guiones
+      .replace(/-+/g, '-');         // Reemplaza múltiples guiones seguidos con uno solo
   }
 }
