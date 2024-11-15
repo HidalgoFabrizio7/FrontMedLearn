@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Users } from '../models/Users';
+import { QuantityUsersByRolDTO } from '../models/QuantityUsersByRolDTO';
 
 
 const base_url = environment.base
@@ -45,4 +46,7 @@ export class UsersService {
     return this.http.get<number>(`${this.url}/idmayor`);
   }
 
+  getUserProportions(){
+    return this.http.get<QuantityUsersByRolDTO[]>(`${this.url}/controldeusuarios`);
+  }
 }

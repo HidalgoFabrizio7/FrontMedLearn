@@ -40,12 +40,12 @@
                 <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" accept=".png, .jpg, .jpeg" />
             </div>
             <br />
-        <!-- Previsualización de la imagen -->
-        <div *ngIf="imageURL" class="preview-container">
-            <h3>Previsualización de la Imagen</h3>
-            <img [src]="imageURL" alt="Previsualización de la Imagen" class="preview-image" />
-        </div>
-        <br />
+            <!-- Previsualización de la imagen -->
+            <div *ngIf="imageURL" class="preview-container">
+                <h3>Previsualización de la Imagen</h3>
+                <img [src]="imageURL" alt="Previsualización de la Imagen" class="preview-image" />
+            </div>
+            <br />
             <!--contador-->
             <mat-form-field class="example-full-width">
                 <mat-label>Contador de Vistas</mat-label>
