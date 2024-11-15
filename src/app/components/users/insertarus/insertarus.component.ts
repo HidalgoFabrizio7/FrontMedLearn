@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -50,7 +50,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 export class InsertarusComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   userr: Users = new Users();
-  role = new Role();
+  role: Role = new Role();
   id: number = 0;
   edicion: boolean = false;
   complete: boolean = false;
@@ -96,6 +96,9 @@ export class InsertarusComponent implements OnInit{
 
 
   ngOnInit(): void {
+    this.uS.getidMayor().subscribe((data: number) => {
+      this.role.user.idUser = data+1;
+    });
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] > 0;
@@ -135,12 +138,11 @@ export class InsertarusComponent implements OnInit{
         this.uS.insert(this.userr).subscribe((data) => {
           this.uS.list().subscribe((data) => {
             this.uS.setList(data);
+            this.uS.getidMayor().subscribe((id) => {
+              console.log(id);
+              this.rS.insert(this.role).subscribe();
+            });
           });
-        });
-
-        this.uS.getidMayor().subscribe((id) => {
-          this.role.user.idUser = id;
-          this.rS.insert(this.role).subscribe();
         });
 
         this.complete= true

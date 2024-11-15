@@ -117,11 +117,11 @@
               <mat-label>Certificado</mat-label>
               <input matInput placeholder="imagen" formControlName="hcertificado"/>
             </mat-form-field>
-            <div *ngIf="complete">
-              <router-outlet></router-outlet>
-              <div [hidden]="route.children.length !== 0">
-                <app-crearhp [routerLink]="['nuevohp', role.user.idUser]"></app-crearhp>
-              </div>
+          </div>
+          <div *ngIf="complete">
+            <router-outlet></router-outlet>
+            <div [hidden]="route.children.length !== 0">
+              <app-crearhp [routerLink]="['nuevohp', role.user.idUser]"></app-crearhp>
             </div>
           </div>
           <div>
