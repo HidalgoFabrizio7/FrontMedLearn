@@ -6,9 +6,11 @@ import { DietComponent } from './components/diet/diet.component';
 import { InsertardtComponent } from './components/diet/insertardt/insertardt.component';
 import { UsersComponent } from './components/users/users.component';
 import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
+import {TreatmentsComponent} from './components/treatments/treatments.component';
+import {InsertartrComponent} from './components/treatments/insertartr/insertartr.component';
+import {ReportesComponent} from './components/reportes/reportes.component';
 import { HospitalComponent } from './components/hospital/hospital.component';
 import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
-import { ReportesComponent } from './components/reportes/reportes.component';
 import { NumberdietinityfinComponent } from './components/reportes/numberdietinityfin/numberdietinityfin.component';
 
 export const routes: Routes = [
@@ -35,7 +37,7 @@ export const routes: Routes = [
             },
         ],
     },
-    
+
     {
         path:'Dietas', component:DietComponent,
         children:[
@@ -52,25 +54,48 @@ export const routes: Routes = [
     },
 
     {
-      path:'Usuarioss', component:UsersComponent,
-      children:[
-          {
-              path: 'nuevous', component: InsertarusComponent,
-              children:[
-                {
-                    path: 'nuevohp/:id', component: CrearhpComponent,
-                },
-              ],
-          },
-          {
-            path:'modificar/:id', component: InsertarusComponent,
-          },
-      ],
+        path:'Usuarioss', component:UsersComponent,
+        children:[
+            {
+                path: 'nuevous', component: InsertarusComponent,
+                children:[
+                  {
+                      path: 'nuevohp/:id', component: CrearhpComponent,
+                  },
+                ],
+            },
+            {
+              path:'modificar/:id', component: InsertarusComponent,
+            },
+        ],
     },
+
+    {
+    path: 'reportes', component: ReportesComponent,
+    children:[
+        {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
+
+        },
+        {
+            path: 'edicionesrep/:id', component:InsertarComponent,
+        },
+    ],
+},
 
     {
       path:'Hospitales', component:HospitalComponent,
     },
 
+  {
+    path:'Tratamientoss', component:TreatmentsComponent,
+    children:[
+        {
+            path: 'nuevotr', component: InsertartrComponent,
+        },
+        {
+            path:'edicionestr/:id', component:InsertartrComponent,
+        },
+    ],
+},
 ];
 
