@@ -33,7 +33,7 @@ import { CommonModule } from '@angular/common';
 })
 export class InsertarComponent implements OnInit{
   form: FormGroup = new FormGroup({});
-  fileName: string = ''; 
+  fileName: string = '';
   imageURL: string | ArrayBuffer | null = null;
   illness: Illness = new Illness();
   id: number = 0;
@@ -46,8 +46,6 @@ export class InsertarComponent implements OnInit{
     private route: ActivatedRoute
   ){}
 
-
-  
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -120,7 +118,7 @@ onFileSelected(event: any) {
   }
 }
 
-  
+
 // Almacena la imagen en IndexedDB
 storeImageInIndexedDB(file: File) {
   const reader = new FileReader();
