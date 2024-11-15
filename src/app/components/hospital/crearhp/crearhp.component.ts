@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -7,8 +7,7 @@ import { Hospital } from '../../../models/Hospital';
 import { HospitalService } from '../../../services/hospital.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Users } from '../../../models/Users';
-import { UsersService } from '../../../services/users.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-crearhp',
@@ -19,7 +18,8 @@ import { UsersService } from '../../../services/users.service';
     ReactiveFormsModule,
     FormsModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   templateUrl: './crearhp.component.html',
   styleUrls: ['./crearhp.component.css']
@@ -48,7 +48,7 @@ export class CrearhpComponent implements OnInit{
       hlatitude:[''],
       hlongitud:[''],
       haddressHospital:[''],
-      hcontactHospital:[''],
+      hcontactHospital: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
       hcounterViewsHospital:[''],
     });
 

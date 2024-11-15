@@ -17,7 +17,13 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Contacto</mat-label>
-        <input matInput placeholder="ejem. 000 000 000" formControlName="hcontactHospital" />
+        <span matTextPrefix>+51 &nbsp;</span>
+        <input formControlName="hcontactHospital" type="tel" matInput placeholder="555-555-123">
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-error *ngIf="form.get('hpassword')?.hasError('required')">
+          Campo obligatorio.</mat-error>
+          <mat-error *ngIf="form.get('hpassword')?.hasError('minlength')">
+            El campo debe tener 9 caracteres. </mat-error>
       </mat-form-field>
       <br />
 

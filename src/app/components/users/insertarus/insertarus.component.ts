@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,11 +15,19 @@ import {AsyncPipe} from '@angular/common';
 import { Role } from '../../../models/Role';
 import { RolesService } from '../../../services/roles.service';
 import { CrearhpComponent } from '../../hospital/crearhp/crearhp.component';
+import { MatIconModule } from '@angular/material/icon';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 
 @Component({
   selector: 'app-insertarus',
   standalone: true,
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: {showError: true},
+    },
+  ],
   imports: [
     MatStepperModule,
     MatInputModule,
@@ -28,6 +36,7 @@ import { CrearhpComponent } from '../../hospital/crearhp/crearhp.component';
     MatCheckboxModule,
     FormsModule,
     MatButtonModule,
+    MatIconModule,
     CommonModule,
     AsyncPipe,
     RouterOutlet,
@@ -35,7 +44,8 @@ import { CrearhpComponent } from '../../hospital/crearhp/crearhp.component';
     RouterLink
   ],
   templateUrl: './insertarus.component.html',
-  styleUrl: './insertarus.component.css'
+  styleUrl: './insertarus.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InsertarusComponent implements OnInit{
   form: FormGroup = new FormGroup({});
@@ -50,6 +60,11 @@ export class InsertarusComponent implements OnInit{
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   stepperOrientation: Observable<StepperOrientation>;
+  hide = signal(true);
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
 
   constructor(
     private uS: UsersService,
@@ -64,10 +79,9 @@ export class InsertarusComponent implements OnInit{
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
 
     this.firstFormGroup = this.formBuilder.group({
-      firstCtrl: ['', Validators.required],
       hnombre: ['', Validators.required],
       husername: ['', Validators.required],
-      hcorreo: ['', Validators.required],
+      hcorreo: ['', [Validators.required, Validators.email]], //'', [Validators.required, Validators.email]
       hpassword: ['', Validators.required],
     });
 
@@ -162,7 +176,7 @@ export class InsertarusComponent implements OnInit{
     } else {
       this.showCertificado = false;
     }
-
+    this.secondFormGroup.patchValue({ secondCtrl: value });
     this.role.rol = value;
   }
 
