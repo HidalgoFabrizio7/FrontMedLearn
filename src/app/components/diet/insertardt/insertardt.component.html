@@ -8,31 +8,32 @@
           <mat-form-field class="example-full-width" *ngIf="edicion">
           <mat-label>Código</mat-label>
           <input matInput formControlName="codigod" readonly="true"/>
-          </mat-form-field>
+        </mat-form-field>
+
         <br />
           <!-- Text area- BIEN -->
           <mat-form-field class="example-full-width">
           <mat-label>Descripción de Dieta</mat-label>
           <textarea matInput placeholder="Ejem. Preparar un jugo verde todas las mañanas" formControlName="descriptiond" required></textarea>
           </mat-form-field>
-  
+
         <br />
           <!-- Input--BIEN -->
           <mat-form-field class="example-full-width">
           <mat-label>Duración de la dieta</mat-label>
           <input matInput placeholder="Ejem. 7 días"  formControlName="durationd" required/>
           </mat-form-field>
-  
-          <!--Boton de acción que se guarda la fecha 
+
+          <!--Boton de acción que se guarda la fecha
           <mat-form-field class="example-full-width">
           <mat-label>Comenzar dieta</mat-label>
           <input matInput type="date" formControlName="startd"   />
-          </mat-form-field>  
+          </mat-form-field>
 
         <br />  -->
 
-        
-          <!-- Botón de acción para la fecha de la incidencia 
+
+          <!-- Botón de acción para la fecha de la incidencia
           <mat-form-field class="example-full-width">
           <mat-label>Finalizar dieta</mat-label>
           <input matInput type="date" formControlName="finalizard"   />
@@ -63,4 +64,4 @@
       </form>
     </div>
   </div>
-  
+
