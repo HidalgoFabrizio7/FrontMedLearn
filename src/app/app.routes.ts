@@ -8,6 +8,8 @@ import { UsersComponent } from './components/users/users.component';
 import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
 import { HospitalComponent } from './components/hospital/hospital.component';
 import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { NumberdietinityfinComponent } from './components/reportes/numberdietinityfin/numberdietinityfin.component';
 
 export const routes: Routes = [
     {
@@ -21,6 +23,19 @@ export const routes: Routes = [
             },
         ],
     },
+
+    {
+        path: 'reportes', component: ReportesComponent,
+        children:[
+            {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
+
+            },
+            {
+                path: 'edicionesrep/:id', component:InsertarComponent,
+            },
+        ],
+    },
+    
     {
         path:'Dietas', component:DietComponent,
         children:[
@@ -29,6 +44,9 @@ export const routes: Routes = [
             },
             {
                 path:'edicionesdt/:id', component:InsertardtComponent,
+            },
+            {
+                path: ':id', component: DietComponent, // Ruta para ver detalles de la dieta de una enfermedad específica
             },
         ],
     },

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Diet } from '../models/Diet';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { QuantityBydietsinicidasydietsfinalizadasbyuser } from '../models/QuantityBydietsinicidasydietsfinalizadasbyuser';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,8 @@ export class DietService {
   }
    update(di:Diet){
     return this.http.put(this.url,di);
+   }
+   getQuantityBydietsinicidasydietsfinalizadasbyuser():Observable<QuantityBydietsinicidasydietsfinalizadasbyuser[]>{
+    return this.http.get<QuantityBydietsinicidasydietsfinalizadasbyuser[]>(`${this.url}/cantidaddedietasiniciadasandfinalizadasporusuario`);
    }
 }
