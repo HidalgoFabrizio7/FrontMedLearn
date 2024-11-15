@@ -10,6 +10,7 @@ import { HospitalComponent } from './components/hospital/hospital.component';
 import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { NumberdietinityfinComponent } from './components/reportes/numberdietinityfin/numberdietinityfin.component';
+import { ProporcionUsersComponent } from './components/reportes/proporcion-users/proporcion-users.component';
 
 export const routes: Routes = [
     {
@@ -27,11 +28,14 @@ export const routes: Routes = [
     {
         path: 'reportes', component: ReportesComponent,
         children:[
-            {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
-
+            {
+                path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
             },
             {
                 path: 'edicionesrep/:id', component:InsertarComponent,
+            },
+            {
+                path: 'proportionusers', component: ProporcionUsersComponent,
             },
         ],
     },

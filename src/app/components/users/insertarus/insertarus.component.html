@@ -100,28 +100,56 @@
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroup" label="Choose an option" errorMessage="Escoja su Rol.">
+      <mat-step [stepControl]="secondFormGroup" label="Escoja su Rol" errorMessage="Escoja su Rol.">
         <form [formGroup]="secondFormGroup">
           <div class="button-container">
-            <button mat-button matStepperNext (click)="setAttributeValue('PACIENTE')">Paciente</button>
-            <button mat-button matStepperNext (click)="setAttributeValue('NUTRICIONISTA')">Nutricionista</button>
-            <button mat-button matStepperNext (click)="setAttributeValue('DOCTOR')">Doctor</button>
+            <button mat-button matStepperNext class="square-button" (click)="setAttributeValue('PACIENTE')">
+              <mat-icon>person</mat-icon> Paciente
+            </button>
+            <button mat-button matStepperNext class="square-button" (click)="setAttributeValue('NUTRICIONISTA')">
+              <mat-icon>restaurant</mat-icon> Nutricionista
+            </button>
+            <button mat-button matStepperNext class="square-button" (click)="setAttributeValue('DOCTOR')">
+              <mat-icon>medical_services</mat-icon> Doctor
+            </button>
           </div>
           <button mat-button matStepperPrevious>Back</button>
         </form>
       </mat-step>
+      
       <mat-step [stepControl]="thirdFormGroup" label="Fill out your phone number">
         <form [formGroup]="thirdFormGroup">
           <div class="flex-container" *ngIf="showCertificado">
-            <mat-form-field class="example-full-width">
-              <mat-label>Certificado</mat-label>
-              <input matInput placeholder="imagen" formControlName="hcertificado"/>
-            </mat-form-field>
-          </div>
-          <div *ngIf="complete">
-            <router-outlet></router-outlet>
-            <div [hidden]="route.children.length !== 0">
-              <app-crearhp [routerLink]="['nuevohp', role.user.idUser]"></app-crearhp>
+            <!-- Campo de Certificado -->
+            <div class="half-container">
+              <mat-form-field class="example-full-width">
+                <mat-label>Certificado</mat-label>
+                <input matInput placeholder="imagen" formControlName="hcertificado" [value]="fileName" readonly />
+              </mat-form-field>
+              <br />
+               <!-- Seleccionar archivo -->
+              <div class="file-drop-area" (click)="fileInput.click()">
+                <p *ngIf="!fileName">Arrastra una imagen aquí o haz clic para seleccionar</p>
+                <p *ngIf="fileName">Imagen seleccionada: {{ fileName }}</p>
+                <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" accept=".png, .jpg, .jpeg" />
+              </div>
+              <br />
+              <!-- Previsualización de la imagen -->
+              <div *ngIf="imageURL" class="preview-container">
+                <h3>Previsualización de la Imagen</h3>
+                <img [src]="imageURL" alt="Previsualización de la Imagen" class="preview-image" />
+              </div>
+              <br />
+            </div>
+          
+            <!-- Registro de Hospital -->
+            <div class="half-container">
+              <div *ngIf="complete">
+                <router-outlet></router-outlet>
+                <div [hidden]="route.children.length !== 0">
+                  <app-crearhp [routerLink]="['nuevohp', role.user.idUser]"></app-crearhp>
+                </div>
+              </div>
             </div>
           </div>
           <div>

@@ -1,27 +1,27 @@
 <mat-toolbar class="custom-toolbar">
-
   <img src="images/logoicon.png" alt="logoicon" class="logoIcon">
   <span class="website-name">MedLearn</span>
   <span class="espacio"></span>
   <div>
     <button mat-button [matMenuTriggerFor]="menuEnfermedad" style="color: white">
-      Enfermedad
+      <mat-icon>healing</mat-icon> Enfermedad
     </button>
     <button mat-button [matMenuTriggerFor]="menuDietas" style="color: white">
-      Dietas
+      <mat-icon>restaurant</mat-icon> Dietas
     </button>
     <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: white">
-      Usuarios
+      <mat-icon>people</mat-icon> Usuarios
     </button>
     <button mat-button [matMenuTriggerFor]="menuHospitales" style="color: white">
-      Hospitales
+      <mat-icon>local_hospital</mat-icon> Hospitales
     </button>
     <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
-      Reportes
+      <mat-icon>assessment</mat-icon> Reportes
     </button>
   </div>
 </mat-toolbar>
 
+<!-- Menús no requieren cambios adicionales -->
 <mat-menu #menuEnfermedad="matMenu">
   <button mat-menu-item routerLink="/Enfermedades">Listar</button>
   <button mat-menu-item routerLink="/Enfermedades/nuevoenf">Registrar</button>
@@ -39,11 +39,12 @@
 
 <mat-menu #menuHospitales="matMenu">
   <button mat-menu-item routerLink="/Hospitales">Listar</button>
-  <button mat-menu-item routerLink="/Hospitales/nuevohp">Registrar</button>
 </mat-menu>
 
 <mat-menu #menuReportes="matMenu">
   <button mat-menu-item routerLink="/reportes">Listar</button>
   <button mat-menu-item routerLink="/reportes/numberdietinityfinal">Reporte de dietas</button>
+  <button mat-menu-item routerLink="/reportes/proportionusers">Proporción de Usuarios</button>
 </mat-menu>
+
 <router-outlet></router-outlet>
