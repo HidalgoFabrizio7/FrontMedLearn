@@ -25,6 +25,19 @@ export const routes: Routes = [
             },
         ],
     },
+
+    {
+        path: 'reportes', component: ReportesComponent,
+        children:[
+            {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
+
+            },
+            {
+                path: 'edicionesrep/:id', component:InsertarComponent,
+            },
+        ],
+    },
+
     {
         path:'Dietas', component:DietComponent,
         children:[
@@ -34,6 +47,9 @@ export const routes: Routes = [
             {
                 path:'edicionesdt/:id', component:InsertardtComponent,
             },
+            {
+                path: ':id', component: DietComponent, // Ruta para ver detalles de la dieta de una enfermedad específica
+            },
         ],
     },
 
@@ -42,9 +58,14 @@ export const routes: Routes = [
       children:[
           {
               path: 'nuevous', component: InsertarusComponent,
+              children:[
+                {
+                    path: 'nuevohp/:id', component: CrearhpComponent,
+                },
+              ],
           },
           {
-            path:'dardebaja/:id', component: InsertarusComponent,
+            path:'modificar/:id', component: InsertarusComponent,
           },
       ],
 
@@ -61,14 +82,9 @@ export const routes: Routes = [
     ],
 },
 
-{
-    path:'Hospitales', component:HospitalComponent,
-    children:[
-      {
-          path: 'nuevohp', component: CrearhpComponent,
-      },
-  ],
-  },
+    {
+      path:'Hospitales', component:HospitalComponent,
+    },
 
   {
     path:'Tratamientoss', component:TreatmentsComponent,

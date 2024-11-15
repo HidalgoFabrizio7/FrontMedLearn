@@ -20,7 +20,7 @@ export class ListarComponent implements OnInit{
   datasource: MatTableDataSource<Illness> = new MatTableDataSource();
 
   constructor(private iS:IllnessService, private router: Router){}
-  
+
 
   ngOnInit(): void {
     this.iS.list().subscribe((data) => {
@@ -74,6 +74,6 @@ export class ListarComponent implements OnInit{
       }
     );
     }
-    
+
 
 }

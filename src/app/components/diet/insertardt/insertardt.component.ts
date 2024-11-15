@@ -1,4 +1,3 @@
-import { Users } from './../../../models/Users';
 import { CommonModule } from '@angular/common'; //
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';//
@@ -7,43 +6,44 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Diet } from '../../../models/Diet';
-import { DietService } from '../../../services/diet.service'; 
-import { ActivatedRoute, Params, Router } from '@angular/router'; //
-import { Illness } from '../../../models/Illness';
-import { UsersService } from '../../../services/users.service';
-import { IllnessService } from '../../../services/illness.service';
+import { DietService } from '../../../services/diet.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { CrearhpComponent } from "../../hospital/crearhp/crearhp.component"; //
 
 @Component({
   selector: 'app-insertardt',
   standalone: true,
   imports: [
-            MatInputModule,
-            MatFormFieldModule,
-            ReactiveFormsModule,
-            FormsModule,
-            MatSelectModule,
-            MatButtonModule,
-            CommonModule,
-          ],
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatSelectModule,
+    MatButtonModule,
+    CommonModule,
+    CrearhpComponent
+],
   templateUrl: './insertardt.component.html',
   styleUrl: './insertardt.component.css'
 })
 export class InsertardtComponent implements OnInit{
-  
   form: FormGroup = new FormGroup({});
   diet:Diet  = new Diet();
   id: number = 0;
   edicion: boolean=false;
-  listaEnfermedades: Illness[]=[];
-  listarNombres: Users[]=[];
+
+  listaEnfermedades: { value: number, viewValue: string }[] = [
+    { value: 1, viewValue: '1' },
+    { value: 2, viewValue: '2'  },
+    { value: 3, viewValue: '3'  },
+    // Agrega más evaluaciones según sea necesario
+  ];
 
   constructor(
     private deS: DietService,
-    private uS: UsersService,
-    private iS:IllnessService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) =>{
@@ -59,13 +59,6 @@ export class InsertardtComponent implements OnInit{
       startd: ['', Validators.required],
       finalizard: ['', Validators.required],
       illnessd:['',Validators.required],
-      userd:['',Validators.required],
-    });
-    this.iS.list().subscribe((data) => {
-      this.listaEnfermedades = data;
-    });
-    this.uS.list().subscribe((data)=>{
-      this.listarNombres = data;
     });
   }
   insertar(): void {
@@ -76,7 +69,6 @@ export class InsertardtComponent implements OnInit{
       this.diet.startDayDiet = this.form.value.startd;
       this.diet.finishDayDiet = this.form.value.finalizard;
       this.diet.illness.idIllness = this.form.value.illnessd;
-      this.diet.user.idUser = this.form.value.userd;
       if(this.edicion){
         this.deS.update(this.diet).subscribe((data) => {
           this.deS.list().subscribe((data) => {
@@ -90,7 +82,7 @@ export class InsertardtComponent implements OnInit{
           });
         });
       }
-      
+
     }
     this.router.navigate(['Dietas']);
   }
@@ -104,8 +96,7 @@ export class InsertardtComponent implements OnInit{
           durationd:new FormControl(data.durationDiet),
           startd: new FormControl(data.startDayDiet),
           finalizard:new FormControl(data.finishDayDiet),
-          illnessd:new FormControl(data.illness.nameIllness),
-          userd:new FormControl(data.user.fullnameUser),
+          illnessd:new FormControl(data.illness.idIllness),
         })
       })
     }

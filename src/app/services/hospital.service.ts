@@ -19,7 +19,7 @@ export class HospitalService {
   }
 
   insert(u: Hospital){
-    return this.http.post(`${base_url}/crear`, u);
+    return this.http.post(`${this.url}/crear`, u);
   }
 
   getList() {
