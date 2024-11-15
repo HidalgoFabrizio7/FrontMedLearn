@@ -41,19 +41,23 @@
 
         <br />
           <!-- Map option -->
-          <mat-form-field >
-          <mat-label>Nombre de Enfermedad </mat-label>
-          <mat-select formControlName="illnessd">@for(illness of listaEnfermedades; track illness) {
-          <mat-option [value]="illness.idIllness">{{ illness.nameIllness }}</mat-option>}
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Nombre de Enfermedad</mat-label>
+            <mat-select formControlName="illnessd">
+              <mat-option *ngFor="let i of listaEnfermedades" [value]="i.idIllness">
+                {{i.nameIllness}}
+              </mat-option>
+            </mat-select>     
+          </mat-form-field>
         <br />
           <!-- Map option -->
-          <mat-form-field >
-          <mat-label>Nombre del doctor</mat-label>
-          <mat-select formControlName="userd">@for(user of listarNombres; track user) {
-          <mat-option [value]="user.idUser">{{ user.fullnameUser }}</mat-option>}
-          </mat-select>
+          <mat-form-field class="example-full-width">
+            <mat-label>Nombre del doctor</mat-label>
+            <mat-select formControlName="userd">
+              <mat-option *ngFor="let u of listarNombres" [value]="u.idUser">
+                {{u.username}}
+              </mat-option>
+            </mat-select>     
           </mat-form-field>
 
         <br />

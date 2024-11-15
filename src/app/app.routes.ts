@@ -54,23 +54,23 @@ export const routes: Routes = [
     },
 
     {
-      path:'Usuarioss', component:UsersComponent,
-      children:[
-          {
-              path: 'nuevous', component: InsertarusComponent,
-              children:[
-                {
-                    path: 'nuevohp/:id', component: CrearhpComponent,
-                },
-              ],
-          },
-          {
-            path:'modificar/:id', component: InsertarusComponent,
-          },
-      ],
+        path:'Usuarioss', component:UsersComponent,
+        children:[
+            {
+                path: 'nuevous', component: InsertarusComponent,
+                children:[
+                  {
+                      path: 'nuevohp/:id', component: CrearhpComponent,
+                  },
+                ],
+            },
+            {
+              path:'modificar/:id', component: InsertarusComponent,
+            },
+        ],
+    },
 
-  },
-  {
+    {
     path: 'reportes', component: ReportesComponent,
     children:[
         {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
