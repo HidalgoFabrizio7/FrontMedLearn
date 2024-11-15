@@ -1,5 +1,5 @@
 <div class="container">
-  <div style="text-align: center;margin: 5%;" class="title-container h1"> <h1 >Lista de enfermedades</h1> </div>
+  <div style="text-align: center;margin: 1%;" class="title-container h1"> <h1 >Lista de enfermedades</h1> </div>
    
     <div class="card-container">
       <mat-card *ngFor="let element of datasource.data" class="card">
@@ -19,12 +19,11 @@
             <img mat-card-image [src]="(element.imageIllness)" alt="Imagen de {{ element.nameIllness }}" class="card-image" />
             </div>
           </mat-card-content>
+          
+          <mat-card-content>
           <mat-card-title>{{ element.nameIllness }}</mat-card-title>
-          <mat-card-content>
           <p><strong>Descripción:</strong></p>
-          </mat-card-content>
-          <mat-card-content>
-            <p>{{ element.descriptionIllness }}</p>
+          <p>{{ element.descriptionIllness }}</p>
           </mat-card-content>
           <mat-card-actions>
             <button mat-raised-button color="accent" [routerLink]="['/Dietas', element.idIllness]">

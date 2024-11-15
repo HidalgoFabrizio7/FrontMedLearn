@@ -36,16 +36,17 @@
     justify-content: space-between;
     
   }
+
+  .card:hover {
+    transform: scale(1.02);
+}
+
   .mat-card-actions {
     display: flex;
     justify-content: space-between;
   }
   
-  .view-details-btn {
-    width: 100%;
-    background-color: #000;
-    color: #fff;
-  }
+  
   
 
   .like-dislike-section {
@@ -93,11 +94,21 @@
     border-radius: 4px;
     margin-right: 5px;
   }
-  
+  mat-card-header {
+    margin-bottom: 16px; /* Añade espacio debajo del header */
+}
   .delete-btn {
     background-color: #F44336;
     border-radius: 4px;
   }
+  .edit-btn, .delete-btn {
+    font-size: 14px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-right: 8px;
+    color: #fff;
+    border: none; /* Color blanco para el texto */
+}
   button[mat-raised-button] {
     font-size: 14px;
     border-radius: 4px;
@@ -118,3 +129,16 @@
     cursor: pointer;
     display: inline-block;
   }
+  .view-details-btn {
+    width: auto; /* Ajusta el ancho según sea necesario */
+    margin-top: 10px;
+    margin: auto;
+    display: block;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 1 px; /* Aumenta el padding para mayor tamaño */
+    font-size: 1em;
+    border-radius: 8px;
+    height:auto;
+}
