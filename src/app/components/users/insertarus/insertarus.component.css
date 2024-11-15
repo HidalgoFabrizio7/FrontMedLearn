@@ -1,0 +1,57 @@
+.container {
+  text-align: center;
+  margin: 5%;
+}
+
+.example-full-width {
+  width: 60%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Espacio entre botones */
+}
+
+.button-container button {
+  flex: 1; /* Ocupa todo el espacio posible */
+  aspect-ratio: 1; /* Hace que los botones sean cuadrados */
+  background-color: #4caf50; /* Verde */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: #45a049;
+}
+
+h1 {
+  color: #2e7d32; /* Verde oscuro */
+}
+
+input::placeholder {
+  color: #9e9e9e;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
+.button-terminar {
+  background-color: #4caf50; /* Verde */
+  color: white;
+}
+
+.button-terminar:hover {
+  background-color: #45a049;
+}
