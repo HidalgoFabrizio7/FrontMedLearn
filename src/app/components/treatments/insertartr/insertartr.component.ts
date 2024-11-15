@@ -1,11 +1,19 @@
 import { CommonModule } from '@angular/common'; //
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';//
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+ } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button'; //
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+
 import {Treatments} from '../../../models/treatments';
 import {TreatmentsService} from '../../../services/treatments.service';
 import {Illness} from '../../../models/Illness';
@@ -42,7 +50,7 @@ export class InsertartrComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute,
     private iS: IllnessService,
-    private uS: UsersService
+    private uS: UsersService,
   ) {}
 
   ngOnInit(): void {

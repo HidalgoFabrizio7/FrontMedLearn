@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {Treatments} from '../models/treatments';
+import { Treatments } from '../models/treatments';
 const base_url = environment.base;
 
 @Injectable({

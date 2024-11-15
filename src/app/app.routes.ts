@@ -11,7 +11,6 @@ import {InsertartrComponent} from './components/treatments/insertartr/insertartr
 import {ReportesComponent} from './components/reportes/reportes.component';
 import { HospitalComponent } from './components/hospital/hospital.component';
 import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
-import { ReportesComponent } from './components/reportes/reportes.component';
 import { NumberdietinityfinComponent } from './components/reportes/numberdietinityfin/numberdietinityfin.component';
 
 export const routes: Routes = [
@@ -50,5 +49,37 @@ export const routes: Routes = [
       ],
 
   },
+  {
+    path: 'reportes', component: ReportesComponent,
+    children:[
+        {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
+
+        },
+        {
+            path: 'edicionesrep/:id', component:InsertarComponent,
+        },
+    ],
+},
+
+{
+    path:'Hospitales', component:HospitalComponent,
+    children:[
+      {
+          path: 'nuevohp', component: CrearhpComponent,
+      },
+  ],
+  },
+
+  {
+    path:'Tratamientoss', component:TreatmentsComponent,
+    children:[
+        {
+            path: 'nuevotr', component: InsertartrComponent,
+        },
+        {
+            path:'edicionestr/:id', component:InsertartrComponent,
+        },
+    ],
+},
 ];
 

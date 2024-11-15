@@ -1,4 +1,3 @@
-import { NewChild } from './../../../../../node_modules/vite/node_modules/postcss/lib/container.d';
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table'
 import { Illness } from '../../../models/Illness';
@@ -7,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-listar',
