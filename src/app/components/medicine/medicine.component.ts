@@ -5,7 +5,7 @@ import { ListarmedComponent } from "./listarmed/listarmed.component";
 @Component({
   selector: 'app-medicine',
   standalone: true,
-  imports: [RouterOutlet, MedicineComponent, ListarmedComponent],
+  imports: [RouterOutlet, ListarmedComponent],
   templateUrl: './medicine.component.html',
   styleUrl: './medicine.component.css'
 })

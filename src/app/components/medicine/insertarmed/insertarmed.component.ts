@@ -1,3 +1,4 @@
+import { Treatments } from './../../../models/treatments';
 import { name } from './../../../../../node_modules/@leichtgewicht/ip-codec/types/index.d';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -10,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MedicineService } from '../../../services/medicine.service';
 import { Medicine } from '../../../models/Medicine';
+import { TreatmentsService } from '../../../services/treatments.service';
 
 @Component({
   selector: 'app-insertarmed',
@@ -28,21 +30,21 @@ import { Medicine } from '../../../models/Medicine';
   styleUrl: './insertarmed.component.css'
 })
 export class InsertarmedComponent implements OnInit {
+  listaTratamientos: Treatments[] = [];
   form: FormGroup = new FormGroup({});
-  meddicina: Medicine = new Medicine();
+  medicina: Medicine = new Medicine();
   id: number = 0;
   edicion: boolean = false;
-
-
 
   constructor(
     private medS: MedicineService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private treatmentsS: TreatmentsService
   ) {}
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] > 0;
@@ -52,43 +54,52 @@ export class InsertarmedComponent implements OnInit {
       codigo: ['', Validators.required],
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
+      tratamiento: ['', Validators.required],
+    });
+    this.cargarTratamientos();
+  }
 
+  cargarTratamientos(): void {
+    this.treatmentsS.list().subscribe((data) => {
+      this.listaTratamientos = data;
+      console.log(this.listaTratamientos);
     });
   }
+
   insertar(): void {
     if (this.form.valid) {
-      this.meddicina.idMedicine = this.form.value.codigo;
-      this.meddicina.nameMedicine = this.form.value.nombre;
-      this.meddicina.descriptionMedicine = this.form.value.descripcion;
-      if(this.edicion){
-        this.medS.update(this.meddicina).subscribe((data) => {
+      this.medicina.idMedicine = this.form.value.codigo;
+      this.medicina.nameMedicine = this.form.value.nombre;
+      this.medicina.descriptionMedicine = this.form.value.descripcion;
+      this.medicina.treatment = this.form.value.tratamiento;
+      if (this.edicion) {
+        this.medS.update(this.medicina).subscribe((data) => {
           this.medS.list().subscribe((data) => {
             this.medS.setList(data);
-          })}
-        );
-      }else{
-        this.medS.insert(this.meddicina).subscribe((data) => {
-        this.medS.list().subscribe((data) => {
-          this.medS.setList(data);
+            this.router.navigate(['Medicinas']);
+          });
         });
-        
-      });
+      } else {
+        this.medS.insert(this.medicina).subscribe((data) => {
+          this.medS.list().subscribe((data) => {
+            this.medS.setList(data);
+            this.router.navigate(['Medicinas']);
+          });
+        });
       }
     }
-    this.router.navigate(['Medicinas']);
   }
-  init() {
 
+  init() {
     if (this.edicion) {
       this.medS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          codigo: new FormControl(data.idMedicine),
-          nombre: new FormControl(data.nameMedicine),
-          descripcion: new FormControl(data.descriptionMedicine),
-
+        this.form.patchValue({
+          codigo: data.idMedicine,
+          nombre: data.nameMedicine,
+          descripcion: data.descriptionMedicine,
+          tratamiento: data.treatment,
         });
       });
     }
   }
-
 }

@@ -13,8 +13,31 @@
     <button mat-button [matMenuTriggerFor]="menuMedicinas" style="color: white">
       Medicinas
     </button>
+
+    <button mat-button [matMenuTriggerFor]="menuCantiades" style="color: white">
+      Cantidades
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuCantiades" style="color: white">
+      Cantidades
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
+      Reportes
+    </button>
+
+
   </div>
 </mat-toolbar>
+
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/Reportes">Reportes</button>
+</mat-menu>
+
+<mat-menu #menuCantiades="matMenu">
+  <button mat-menu-item routerLink="/Cantidades">Listar</button>
+  <button mat-menu-item routerLink="/Cantidades/nuevoCanti">Registrar</button>
+</mat-menu>
 
 <mat-menu #menuEnfermedad="matMenu">
   <button mat-menu-item routerLink="/Enfermedades">Listar</button>
@@ -31,10 +54,14 @@
   <button mat-menu-item routerLink="/Medicinas/nuevomed">Registrar</button>
 </mat-menu>
 
+
+
 <router-outlet></router-outlet>
+
 <mat-menu #menuUsuarios="matMenu">
   <button mat-menu-item routerLink="/Usuarioss">Listar</button>
   <button mat-menu-item routerLink="/Usuarioss/nuevous">Registrar</button>
 </mat-menu>
+
 
 <router-outlet></router-outlet>

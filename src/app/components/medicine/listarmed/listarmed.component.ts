@@ -14,7 +14,7 @@ import { MedicineService } from '../../../services/medicine.service';
 })
 export class ListarmedComponent {
   datasource: MatTableDataSource<Medicine>= new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'accion01','accion02'];
+  displayedColumns: string[] = ['c1', 'c2', 'c3','c4','accion01','accion02'];
   constructor(private medS: MedicineService) {}
   ngOnInit(): void {
     this.medS.list().subscribe((data) => {

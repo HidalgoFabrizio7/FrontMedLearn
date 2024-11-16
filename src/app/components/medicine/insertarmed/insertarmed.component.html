@@ -27,8 +27,35 @@
                     formControlName="descripcion"
                 ></textarea>
             </mat-form-field>
-            <div style="text-align: center;">
-                <button mat-flat-button type="submit" color="warn">Registrar</button>
-            </div>
-        </form>
-    </div>
+
+            <br>
+          <!--
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Tratamiento</mat-label>
+                      <mat-select formControlName="tratamiento">
+                        <mat-option *ngFor="let n of listaTratamientos" [value]="n.idTreatments">
+                          {{ n.descriptionTreatment }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="form.get('htipo')?.hasError('required')"
+                      >El tipo es obligatorio.</mat-error
+                      >
+                    </mat-form-field>
+-->
+                    <mat-form-field>
+                      <mat-label>Tratamiento</mat-label>
+                      <mat-select formControlName="tratamiento">
+                        @for (n of listaTratamientos; track n) {
+                          <mat-option [value]="n.idTreatments">{{ n.descriptionTreatment }}</mat-option>
+                        }
+                      </mat-select>
+                    </mat-form-field>
+
+
+
+                      <div style="text-align: center;">
+                          <button mat-flat-button type="submit" color="warn">Registrar</button>
+                      </div>
+                  </form>
+              </div>
+          </div>

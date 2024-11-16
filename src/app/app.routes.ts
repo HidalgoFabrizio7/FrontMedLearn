@@ -8,6 +8,10 @@ import { MedicineComponent } from './components/medicine/medicine.component';
 import { InsertarmedComponent } from './components/medicine/insertarmed/insertarmed.component';
 import { UsersComponent } from './components/users/users.component';
 import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
+import { InsertarquanComponent } from './components/quantity/insertarquan/insertarquan.component';
+import { ListarquanComponent } from './components/quantity/listarquan/listarquan.component';
+import { QuantityComponent } from './components/quantity/quantity.component';
+import {ReportesComponent} from './components/reportes/reportes.component';
 
 export const routes: Routes = [
     {
@@ -55,6 +59,32 @@ export const routes: Routes = [
           },
       ],
 
+    },
+
+    {
+        path:'Cantidades', component:QuantityComponent,
+        children:[
+            {
+                path: 'nuevoCanti', component: InsertarquanComponent,
+            },
+            {
+              path:'editas/:id', component: InsertarquanComponent,
+            },
+        ],
+
+      },
+
+  {
+    path:'Reportes', component:ReportesComponent,
+    children:[
+      {
+        path: 'cantiades', component: ReportesComponent,
+      },
+    ],
+
   },
+
+
+
 ];
 

@@ -14,6 +14,7 @@ import {
  import { MatButtonModule } from '@angular/material/button';
 import { Illness } from '../../../models/Illness';
 import { IllnessService } from '../../../services/illness.service';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-insertar',
@@ -25,6 +26,7 @@ import { IllnessService } from '../../../services/illness.service';
     FormsModule,
     MatSelectModule,
     MatButtonModule,
+    CommonModule
   ],
   templateUrl: './insertar.component.html',
   styleUrl: './insertar.component.css'
@@ -43,7 +45,7 @@ export class InsertarComponent implements OnInit{
   ){}
 
 
-  
+
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
