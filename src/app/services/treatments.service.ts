@@ -12,20 +12,20 @@ export class TreatmentsService {
   private url = `${base_url}/Tratamientos`;
   private listaCambio = new Subject<Treatments[]>();
 
-  constructor(private http: HttpClient) { };
+  constructor(private http: HttpClient) { }
 
   list() {
-    return this.http.get<Treatments[]>(`${this.url}/listado`);
+    return this.http.get<Treatments[]>(this.url);
   }
   insert(t: Treatments) {
     return this.http.post(`${this.url}/registrar`, t);
   }
-  setList(listaNueva: Treatments[]) {
-    this.listaCambio.next(listaNueva);
-  }
-
   getList() {
     return this.listaCambio.asObservable();
+  }
+
+  setList(listaNueva: Treatments[]) {
+    this.listaCambio.next(listaNueva);
   }
 
   listId(id: number) {

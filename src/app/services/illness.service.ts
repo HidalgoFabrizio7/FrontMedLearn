@@ -20,7 +20,7 @@ export class IllnessService {
   }
 
   insert(i: Illness){
-    return this.http.post(this.url, i);
+    return this.http.post(`${this.url}/insertar`, i);
   }
 
   setList(listaNueva: Illness[]){
