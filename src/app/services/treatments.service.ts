@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {Treatments} from '../models/treatments';
+import { Treatments } from '../models/treatments';
 const base_url = environment.base;
 
 @Injectable({
@@ -15,10 +15,10 @@ export class TreatmentsService {
   constructor(private http: HttpClient) { };
 
   list() {
-    return this.http.get<Treatments[]>(`${this.url}/listado`);
+    return this.http.get<Treatments[]>(this.url);
   }
   insert(t: Treatments) {
-    return this.http.post(`${this.url}/registrar`, t);
+    return this.http.post(this.url, t);
   }
   setList(listaNueva: Treatments[]) {
     this.listaCambio.next(listaNueva);
@@ -28,10 +28,14 @@ export class TreatmentsService {
     return this.listaCambio.asObservable();
   }
 
+  delete(id: number){
+    return this.http.delete(`${this.url}/${id}`);
+  }
+
   listId(id: number) {
     return this.http.get<Treatments>(`${this.url}/${id}`);
   }
   update(tl:Treatments){
-    return this.http.put(`${this.url}/actualizar`, tl);
+    return this.http.put(this.url,tl);
   }
 }

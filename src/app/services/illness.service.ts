@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { Illness } from '../models/Illness';
 import { HttpClient } from '@angular/common/http';
+import {QuantityTreatmentsByIllnessDTO} from '../models/QuantityTreatmentsByIllnessDTO';
 
 const base_url = environment.base
 @Injectable({
@@ -10,16 +11,16 @@ const base_url = environment.base
 })
 export class IllnessService {
   private url = `${base_url}/Enfermedades`
-  private listaCambio =new Subject<Illness[]>;
+  private listaCambio =new Subject<Illness[]>();
 
   constructor(private http: HttpClient) { };
 
   list(){
     return this.http.get<Illness[]>(this.url);
   }
-  
+
   insert(i: Illness){
-    return this.http.post(this.url, i);
+    return this.http.post(`${this.url}/insertar`, i);
   }
 
   setList(listaNueva: Illness[]){
@@ -39,5 +40,14 @@ export class IllnessService {
   update(il: Illness) {
     return this.http.put(this.url, il);
   }
-  
+
+  search(name: string) {
+    const params = { nombre: name };
+    return this.http.get<Illness[]>(`${this.url}/busquedas`, { params });
+  }
+
+  getCantidad(): Observable<QuantityTreatmentsByIllnessDTO[]> {
+    return this.http.get<QuantityTreatmentsByIllnessDTO[]>(`${this.url}/cantidades`);
+  }
+
 }
