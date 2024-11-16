@@ -12,8 +12,6 @@ import { UsersService } from '../../../services/users.service';
 import { ActivatedRoute, Params, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import {AsyncPipe} from '@angular/common';
-import { Role } from '../../../models/Role';
-import { RolesService } from '../../../services/roles.service';
 import { CrearhpComponent } from '../../hospital/crearhp/crearhp.component';
 import { MatIconModule } from '@angular/material/icon';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
@@ -50,8 +48,9 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 export class InsertarusComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   userr: Users = new Users();
-  role: Role = new Role();
+  rol: string = "";
   id: number = 0;
+  idus: number = 0;
   edicion: boolean = false;
   complete: boolean = false;
   showCertificado: boolean = false;
@@ -73,7 +72,6 @@ export class InsertarusComponent implements OnInit{
 
   constructor(
     private uS: UsersService,
-    private rS: RolesService,
     private formBuilder: FormBuilder,
     private router: Router,
     public route: ActivatedRoute,
@@ -102,7 +100,7 @@ export class InsertarusComponent implements OnInit{
 
   ngOnInit(): void {
     this.uS.getidMayor().subscribe((data: number) => {
-      this.role.user.idUser = data+1;
+      this.idus=data+1;
     });
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -144,12 +142,11 @@ export class InsertarusComponent implements OnInit{
           this.uS.list().subscribe((data) => {
             this.uS.setList(data);
             this.uS.getidMayor().subscribe((id) => {
+              this.uS.insertRol(this.rol, this.idus).subscribe()
               console.log(id);
-              this.rS.insert(this.role).subscribe();
             });
           });
         });
-
         this.complete= true
       }
 
@@ -184,7 +181,7 @@ export class InsertarusComponent implements OnInit{
       this.showCertificado = false;
     }
     this.secondFormGroup.patchValue({ secondCtrl: value });
-    this.role.rol = value;
+    this.rol = value
   }
 
   transferStepperDataToForm() {

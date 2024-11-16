@@ -1,4 +1,4 @@
-<mat-toolbar class="custom-toolbar">
+<mat-toolbar class="custom-toolbar" *ngIf="verificar()">
   <img src="images/logoicon.png" alt="logoicon" class="logoIcon">
   <span class="website-name">MedLearn</span>
   <span class="espacio"></span>
@@ -17,6 +17,11 @@
     </button>
     <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
       <mat-icon>assessment</mat-icon> Reportes
+    </button>
+  </div>
+  <div class="right-menu">
+    <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white">
+      <mat-icon>person</mat-icon>{{ username }}
     </button>
   </div>
 </mat-toolbar>
@@ -47,4 +52,14 @@
   <button mat-menu-item routerLink="/reportes/proportionusers">Proporción de Usuarios</button>
 </mat-menu>
 
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item routerLink="/login" (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+  <button mat-menu-item>
+    Rol:
+    <span>{{ role }}</span>
+  </button>
+</mat-menu>
 <router-outlet></router-outlet>
