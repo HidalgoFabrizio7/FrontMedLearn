@@ -15,10 +15,10 @@ export class TreatmentsService {
   constructor(private http: HttpClient) { };
 
   list() {
-    return this.http.get<Treatments[]>(this.url);
+    return this.http.get<Treatments[]>(`${this.url}/listado`);
   }
   insert(t: Treatments) {
-    return this.http.post(this.url, t);
+    return this.http.post(`${this.url}/registrar`, t);
   }
   setList(listaNueva: Treatments[]) {
     this.listaCambio.next(listaNueva);
@@ -36,6 +36,6 @@ export class TreatmentsService {
     return this.http.get<Treatments>(`${this.url}/${id}`);
   }
   update(tl:Treatments){
-    return this.http.put(this.url,tl);
+    return this.http.put(`${this.url}/actualizar`,tl);
   }
 }

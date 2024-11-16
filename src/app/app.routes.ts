@@ -11,12 +11,18 @@ import { InsertarusComponent } from './components/users/insertarus/insertarus.co
 import { InsertarquanComponent } from './components/quantity/insertarquan/insertarquan.component';
 import { ListarquanComponent } from './components/quantity/listarquan/listarquan.component';
 import { QuantityComponent } from './components/quantity/quantity.component';
-import {ReportesComponent} from './components/reportes/reportes.component';
 import {TreatmentsComponent} from './components/treatments/treatments.component';
 import {InsertartrComponent} from './components/treatments/insertartr/insertartr.component';
+import {ReportesComponent} from './components/reportes/reportes.component';
 import { HospitalComponent } from './components/hospital/hospital.component';
 import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
 import { NumberdietinityfinComponent } from './components/reportes/numberdietinityfin/numberdietinityfin.component';
+import { InsertarfdComponent } from './components/food/insertarfd/insertarfd.component';
+import { FoodComponent } from './components/food/food.component';
+import { InsertarexComponent } from './components/exercises/insertarex/insertarex.component';
+import { ExercisesComponent } from './components/exercises/exercises.component';
+import { TotalcaloriaspordietaComponent } from './components/reportes/totalcaloriaspordieta/totalcaloriaspordieta.component';
+import { TotalejerciciospordietaComponent } from './components/reportes/totalejerciciospordieta/totalejerciciospordieta.component';
 
 export const routes: Routes = [
     {
@@ -100,11 +106,41 @@ export const routes: Routes = [
 
       },
 
+    {
+      path:'Ejercicios', component:ExercisesComponent,
+      children:[
+          {
+              path: 'nuevoex', component: InsertarexComponent,
+          },
+          {
+            path:'edicionesex/:id', component: InsertarexComponent,
+          },
+      ],
+
+    },
+    {
+      path:'Alimentos', component:FoodComponent,
+      children:[
+          {
+              path: 'nuevofd', component: InsertarfdComponent,
+          },
+          {
+            path:'edicionesfd/:id', component: InsertarfdComponent,
+          },
+      ],
+
+    },
 
     {
     path: 'reportes', component: ReportesComponent,
     children:[
         {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
+
+        },
+        {path: 'totalCaloriasporDieta', component: TotalcaloriaspordietaComponent,
+
+        },
+        {path: 'totaleEjerciciospoDieta', component: TotalejerciciospordietaComponent,
 
         },
         {
