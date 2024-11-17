@@ -13,8 +13,23 @@ import { HospitalComponent } from './components/hospital/hospital.component';
 import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
 import { NumberdietinityfinComponent } from './components/reportes/numberdietinityfin/numberdietinityfin.component';
 import { ProporcionUsersComponent } from './components/reportes/proporcion-users/proporcion-users.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { seguridadGuard } from '../guard/seguridad.guard';
 
 export const routes: Routes = [
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+    },
+    {
+        path: 'nuevacuenta', component: InsertarusComponent,
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+    },
     {
         path: 'Enfermedades', component: IllnessComponent,
         children:[
@@ -25,6 +40,7 @@ export const routes: Routes = [
                 path: 'edicionesenf/:id', component:InsertarComponent,
             },
         ],
+        canActivate: [seguridadGuard],
     },
 
     {
@@ -40,6 +56,7 @@ export const routes: Routes = [
                 path: 'proportionusers', component: ProporcionUsersComponent,
             },
         ],
+        canActivate: [seguridadGuard],
     },
 
     {
@@ -55,23 +72,25 @@ export const routes: Routes = [
                 path: ':id', component: DietComponent, // Ruta para ver detalles de la dieta de una enfermedad específica
             },
         ],
+        canActivate: [seguridadGuard],
     },
 
     {
-        path:'Usuarioss', component:UsersComponent,
-        children:[
-            {
-                path: 'nuevous', component: InsertarusComponent,
-                children:[
-                  {
-                      path: 'nuevohp/:id', component: CrearhpComponent,
-                  },
-                ],
-            },
-            {
-              path:'modificar/:id', component: InsertarusComponent,
-            },
-        ],
+      path:'Usuarioss', component:UsersComponent,
+      children:[
+          {
+              path: 'nuevous', component: InsertarusComponent,
+              children:[
+                {
+                    path: 'nuevohp/:id', component: CrearhpComponent,
+                },
+              ],
+          },
+          {
+            path:'modificar/:id', component: InsertarusComponent,
+          },
+      ],
+      canActivate: [seguridadGuard],
     },
 
     {
@@ -88,6 +107,13 @@ export const routes: Routes = [
 
     {
       path:'Hospitales', component:HospitalComponent,
+      canActivate: [seguridadGuard],
+    },
+
+    {
+        path: 'homes',
+        component: HomeComponent,
+        canActivate: [seguridadGuard],
     },
 
   {

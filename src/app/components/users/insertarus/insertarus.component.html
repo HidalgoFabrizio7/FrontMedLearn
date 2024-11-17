@@ -147,7 +147,7 @@
               <div *ngIf="complete">
                 <router-outlet></router-outlet>
                 <div [hidden]="route.children.length !== 0">
-                  <app-crearhp [routerLink]="['nuevohp', role.user.idUser]"></app-crearhp>
+                  <app-crearhp [routerLink]="['nuevohp', idus]"></app-crearhp>
                 </div>
               </div>
             </div>
@@ -158,9 +158,11 @@
           </div>
         </form>
         <div style="text-align: center;">
-          <button mat-flat-button (click)="enrutar()" *ngIf="complete" class="button-terminar">Terminar</button>
+          <button mat-flat-button routerLink="/login" *ngIf="complete" class="button-terminar">Terminar</button>
         </div>
       </mat-step>
     </mat-stepper>
+    <!--(click)="enrutar()"-->
+
   </div>
 </div>
