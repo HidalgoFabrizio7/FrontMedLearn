@@ -51,6 +51,7 @@ export class InsertarmedComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
+      codigo: [''],
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
       tratamiento: ['', Validators.required],
@@ -68,6 +69,7 @@ export class InsertarmedComponent implements OnInit {
   insertar(): void {
     if (this.form.valid) {
       console.log('Formulario válido, procesando inserción...');
+      this.medicina.idMedicine = this.form.value.codigo;
       this.medicina.nameMedicine = this.form.value.nombre;
       this.medicina.descriptionMedicine = this.form.value.descripcion;
       this.medicina.treatment = this.form.value.tratamiento;
@@ -100,11 +102,11 @@ export class InsertarmedComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.medS.listId(this.id).subscribe((data) => {
-        this.form.patchValue({
-          codigo: data.idMedicine,
-          nombre: data.nameMedicine,
-          descripcion: data.descriptionMedicine,
-          tratamiento: data.treatment,
+        this.form = new FormGroup({
+          codigo: new FormControl(data.idMedicine),
+          nombre: new FormControl(data.nameMedicine),
+          descripcion: new FormControl(data.descriptionMedicine),
+          tratamiento: new FormControl(data.treatment),
         });
       });
     }
