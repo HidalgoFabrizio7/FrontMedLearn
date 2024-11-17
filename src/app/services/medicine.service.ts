@@ -17,11 +17,11 @@ export class MedicineService {
   list(){
     return this.http.get<Medicine[]>(this.url);
   }
-    
+
   insert(med: Medicine){
     return this.http.post(this.url, med);
   }
-  
+
   setList(listaNueva: Medicine[]){
     this.listaCambio.next(listaNueva);
   }
@@ -29,18 +29,17 @@ export class MedicineService {
     return this.listaCambio.asObservable();
   }
   delete(id: number) {
-    return this.http.delete(`${this.url}/${id}`);
+    return this.http.delete(`${this.url}/delete/${id}`);
   }
-  
   listId(id: number) {
     return this.http.get<Medicine>(`${this.url}/${id}`);
   }
-  
+
   update(med: Medicine) {
     return this.http.put(`${this.url}/actualizar`, med);
   }
 
-  
+
 }
 
 

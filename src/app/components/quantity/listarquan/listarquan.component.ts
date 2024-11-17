@@ -4,11 +4,13 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { Quantity } from '../../../models/Quantity';
 import { QuantityService } from '../../../services/quantity.service';
+import {MatCardModule} from '@angular/material/card';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-listarquan',
   standalone: true,
-  imports: [MatTableModule,MatIconModule,RouterModule],
+  imports: [MatTableModule,MatIconModule,RouterModule, MatCardModule, CommonModule],
   templateUrl: './listarquan.component.html',
   styleUrl: './listarquan.component.css'
 })
