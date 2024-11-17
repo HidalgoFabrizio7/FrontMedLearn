@@ -11,14 +11,14 @@ const base_url = environment.base;
 export class DietService {
   private url = `${base_url}/Dietas`;
   private listaCambio = new Subject<Diet[]>();
-  
+
   constructor(private http: HttpClient) { }
 
   list() {
-    return this.http.get<Diet[]>(this.url);
+    return this.http.get<Diet[]>(`${this.url}/listado`);
   }
   insert(d: Diet) {
-    return this.http.post(this.url, d);
+    return this.http.post(`${base_url}/registrar`, d);
   }
   getList() {
     return this.listaCambio.asObservable();
@@ -31,12 +31,12 @@ export class DietService {
   delete(id: number){
     return this.http.delete(`${this.url}/${id}`);
   }
-  
+
   listId(id: number) {
     return this.http.get<Diet>(`${this.url}/${id}`);
   }
    update(di:Diet){
-    return this.http.put(this.url,di);
+    return this.http.put(`${this.url}/actualizar`, di);
    }
    getQuantityBydietsinicidasydietsfinalizadasbyuser():Observable<QuantityBydietsinicidasydietsfinalizadasbyuser[]>{
     return this.http.get<QuantityBydietsinicidasydietsfinalizadasbyuser[]>(`${this.url}/cantidaddedietasiniciadasandfinalizadasporusuario`);
