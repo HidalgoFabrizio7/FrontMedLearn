@@ -51,7 +51,6 @@ export class InsertarmedComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
-      codigo: ['', Validators.required],
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
       tratamiento: ['', Validators.required],
@@ -68,25 +67,33 @@ export class InsertarmedComponent implements OnInit {
 
   insertar(): void {
     if (this.form.valid) {
-      this.medicina.idMedicine = this.form.value.codigo;
+      console.log('Formulario válido, procesando inserción...');
       this.medicina.nameMedicine = this.form.value.nombre;
       this.medicina.descriptionMedicine = this.form.value.descripcion;
       this.medicina.treatment = this.form.value.tratamiento;
       if (this.edicion) {
+        console.log('Modo edición, actualizando medicina...');
         this.medS.update(this.medicina).subscribe((data) => {
+          console.log('Medicina actualizada:', data);
           this.medS.list().subscribe((data) => {
+            console.log('Lista de medicinas actualizada:', data);
             this.medS.setList(data);
             this.router.navigate(['Medicinas']);
           });
         });
       } else {
+        console.log('Modo inserción, agregando nueva medicina...');
         this.medS.insert(this.medicina).subscribe((data) => {
+          console.log('Nueva medicina insertada:', data);
           this.medS.list().subscribe((data) => {
+            console.log('Lista de medicinas actualizada:', data);
             this.medS.setList(data);
             this.router.navigate(['Medicinas']);
           });
         });
       }
+    } else {
+      console.log('Formulario inválido, no se puede procesar la inserción.');
     }
   }
 

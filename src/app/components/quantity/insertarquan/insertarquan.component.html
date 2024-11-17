@@ -22,7 +22,7 @@
       <mat-form-field class="example-full-width">
         <mat-label>medicna</mat-label>
         <mat-select formControlName="medicina">
-          <mat-option *ngFor="let n of listaMedicinas" [value]="n.idMedicine ">
+          <mat-option *ngFor="let n of listaMedicinas" [value]="n ">
             {{ n.nameMedicine }}
           </mat-option>
         </mat-select>
@@ -31,12 +31,25 @@
         >
       </mat-form-field>
 
-
+        <br/>
       <mat-form-field class="example-full-width">
-        <mat-label>medicna</mat-label>
-        <mat-select formControlName="medicina">
-          <mat-option *ngFor="let n of listaMedicinas" [value]="n.idMedicine ">
-            {{ n.nameMedicine }}
+        <mat-label>comida</mat-label>
+        <mat-select formControlName="comida">
+          <mat-option *ngFor="let n of listaComida" [value]="n ">
+            {{ n.nameFood }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('htipo')?.hasError('required')"
+        >El tipo es obligatorio.</mat-error
+        >
+      </mat-form-field>
+
+      <br/>
+      <mat-form-field class="example-full-width">
+        <mat-label>ejericicos</mat-label>
+        <mat-select formControlName="ejercicio">
+          <mat-option *ngFor="let n of ListaEjercicios" [value]="n ">
+            {{ n.nameExercise }}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="form.get('htipo')?.hasError('required')"

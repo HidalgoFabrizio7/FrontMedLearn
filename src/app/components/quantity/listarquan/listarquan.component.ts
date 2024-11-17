@@ -14,7 +14,7 @@ import { QuantityService } from '../../../services/quantity.service';
 })
 export class ListarquanComponent {
   datasource: MatTableDataSource<Quantity> = new MatTableDataSource();
-  displayedColumns: string[]=['c1', 'c2', 'c3', 'editar']
+  displayedColumns: string[]=['c1', 'c2', 'c3', 'c4', 'c5']
 
   constructor(private quanS:QuantityService){}
 
