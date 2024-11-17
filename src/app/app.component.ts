@@ -40,12 +40,16 @@ export class AppComponent {
     return this.loginService.verificar();
   }
   isPaciente() {
-    return this.role === 'PACIENTE';
+    return this.role === 'PACIENTE' || 'ADMINISTRADOR';
   }
   isDoctor() {
-    return this.role === 'DOCTOR';
+    return this.role === 'PACIENTE' || 'ADMINISTRADOR';
   }
   isNutricionista() {
-    return this.role === 'NUTRICIONISTA';
+    return this.role === 'PACIENTE' || 'ADMINISTRADOR';
   }
+  isAdmin() {
+    return this.role === 'ADMINISTRADOR';
+  }
+
 }

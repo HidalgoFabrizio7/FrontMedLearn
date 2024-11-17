@@ -6,7 +6,7 @@
     <button mat-button [matMenuTriggerFor]="menuEnfermedad" style="color: white">
       <mat-icon>healing</mat-icon> Enfermedad
     </button>
-    <button mat-button [matMenuTriggerFor]="menuDietas" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuDietas" style="color: white" *ngIf="isNutricionista()">
       <mat-icon>restaurant</mat-icon> Dietas
     </button>
     <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: white">
@@ -38,18 +38,17 @@
 </mat-menu>
 
 <mat-menu #menuUsuarios="matMenu">
-  <button mat-menu-item routerLink="/Usuarioss">Listar</button>
-  <button mat-menu-item routerLink="/Usuarioss/nuevous">Registrar</button>
+  <button mat-menu-item routerLink="/Usuarioss" *ngIf="isAdmin()">Listar</button>
 </mat-menu>
 
 <mat-menu #menuHospitales="matMenu">
-  <button mat-menu-item routerLink="/Hospitales">Listar</button>
+  <button mat-menu-item routerLink="/Hospitales" *ngIf="isPaciente()">Listar</button>
 </mat-menu>
 
 <mat-menu #menuReportes="matMenu">
   <button mat-menu-item routerLink="/reportes">Listar</button>
   <button mat-menu-item routerLink="/reportes/numberdietinityfinal">Reporte de dietas</button>
-  <button mat-menu-item routerLink="/reportes/proportionusers">Proporción de Usuarios</button>
+  <button mat-menu-item routerLink="/reportes/proportionusers" *ngIf="isAdmin()">Proporción de Usuarios</button>
 </mat-menu>
 
 <mat-menu #menuSalir="matMenu">
