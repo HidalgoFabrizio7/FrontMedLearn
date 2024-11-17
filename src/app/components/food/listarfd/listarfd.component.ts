@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { Food } from '../../../models/Food';
 import { FoodService } from '../../../services/food.service';
+
 @Component({
   selector: 'app-listarfd',
   standalone: true,

@@ -73,12 +73,10 @@ export class CrearhpComponent implements OnInit{
     }
   }
 
-
-
   agregar(): void {
 
-      this.route.params.subscribe((data: Params) => {
-      this.id = data['id'];
+    this.route.params.subscribe((data: Params) => {
+    this.id = data['id'];
     });
     console.log(this.id);
 

@@ -6,20 +6,32 @@ import { DietComponent } from './components/diet/diet.component';
 import { InsertardtComponent } from './components/diet/insertardt/insertardt.component';
 import { UsersComponent } from './components/users/users.component';
 import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
-import {TreatmentsComponent} from './components/treatments/treatments.component';
-import {InsertartrComponent} from './components/treatments/insertartr/insertartr.component';
-import {ReportesComponent} from './components/reportes/reportes.component';
 import { HospitalComponent } from './components/hospital/hospital.component';
 import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
 import { NumberdietinityfinComponent } from './components/reportes/numberdietinityfin/numberdietinityfin.component';
-import { InsertarfdComponent } from './components/food/insertarfd/insertarfd.component';
-import { FoodComponent } from './components/food/food.component';
-import { InsertarexComponent } from './components/exercises/insertarex/insertarex.component';
+import { ProporcionUsersComponent } from './components/reportes/proporcion-users/proporcion-users.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { seguridadGuard } from '../guard/seguridad.guard';
 import { ExercisesComponent } from './components/exercises/exercises.component';
-import { TotalcaloriaspordietaComponent } from './components/reportes/totalcaloriaspordieta/totalcaloriaspordieta.component';
-import { TotalejerciciospordietaComponent } from './components/reportes/totalejerciciospordieta/totalejerciciospordieta.component';
+import { InsertarexComponent } from './components/exercises/insertarex/insertarex.component';
+import { FoodComponent } from './components/food/food.component';
+import { InsertarfdComponent } from './components/food/insertarfd/insertarfd.component';
 
 export const routes: Routes = [
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+    },
+    {
+        path: 'nuevacuenta', component: InsertarusComponent,
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+    },
     {
         path: 'Enfermedades', component: IllnessComponent,
         children:[
@@ -30,18 +42,23 @@ export const routes: Routes = [
                 path: 'edicionesenf/:id', component:InsertarComponent,
             },
         ],
+        canActivate: [seguridadGuard],
     },
 
     {
         path: 'reportes', component: ReportesComponent,
         children:[
-            {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
-
+            {
+                path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
             },
             {
                 path: 'edicionesrep/:id', component:InsertarComponent,
             },
+            {
+                path: 'proportionusers', component: ProporcionUsersComponent,
+            },
         ],
+        canActivate: [seguridadGuard],
     },
 
     {
@@ -57,23 +74,7 @@ export const routes: Routes = [
                 path: ':id', component: DietComponent, // Ruta para ver detalles de la dieta de una enfermedad específica
             },
         ],
-    },
-
-    {
-        path:'Usuarioss', component:UsersComponent,
-        children:[
-            {
-                path: 'nuevous', component: InsertarusComponent,
-                children:[
-                  {
-                      path: 'nuevohp/:id', component: CrearhpComponent,
-                  },
-                ],
-            },
-            {
-              path:'modificar/:id', component: InsertarusComponent,
-            },
-        ],
+        canActivate: [seguridadGuard],
     },
     {
       path:'Ejercicios', component:ExercisesComponent,
@@ -101,37 +102,33 @@ export const routes: Routes = [
     },
 
     {
-    path: 'reportes', component: ReportesComponent,
-    children:[
-        {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
-
-        },
-        {path: 'totalCaloriasporDieta', component: TotalcaloriaspordietaComponent,
-
-        },
-        {path: 'totaleEjerciciospoDieta', component: TotalejerciciospordietaComponent,
-
-        },
-        {
-            path: 'edicionesrep/:id', component:InsertarComponent,
-        },
-    ],
-},
+      path:'Usuarioss', component:UsersComponent,
+      children:[
+          {
+              path: 'nuevous', component: InsertarusComponent,
+              children:[
+                {
+                    path: 'nuevohp/:id', component: CrearhpComponent,
+                },
+              ],
+          },
+          {
+            path:'modificar/:id', component: InsertarusComponent,
+          },
+      ],
+      canActivate: [seguridadGuard],
+    },
 
     {
       path:'Hospitales', component:HospitalComponent,
+      canActivate: [seguridadGuard],
     },
 
-  {
-    path:'Tratamientoss', component:TreatmentsComponent,
-    children:[
-        {
-            path: 'nuevotr', component: InsertartrComponent,
-        },
-        {
-            path:'edicionestr/:id', component:InsertartrComponent,
-        },
-    ],
-},
+    {
+        path: 'homes',
+        component: HomeComponent,
+        canActivate: [seguridadGuard],
+    },
+
 ];
 
