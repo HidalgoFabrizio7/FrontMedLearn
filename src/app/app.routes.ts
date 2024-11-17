@@ -16,6 +16,9 @@ import { ProporcionUsersComponent } from './components/reportes/proporcion-users
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { seguridadGuard } from '../guard/seguridad.guard';
+import { HistorialComponent } from './components/historial/historial.component';
+import { HistorialdietasComponent } from './components/historial/historialdietas/historialdietas.component';
+import { ListardtComponent } from './components/diet/listardt/listardt.component';
 
 export const routes: Routes = [
     {
@@ -127,5 +130,10 @@ export const routes: Routes = [
         },
     ],
 },
+
+{
+  path:'historial/:id', component:ListardtComponent,
+},
+
 ];
 

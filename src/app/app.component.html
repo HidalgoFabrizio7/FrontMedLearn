@@ -9,13 +9,16 @@
     <button mat-button [matMenuTriggerFor]="menuDietas" style="color: white" *ngIf="isNutricionista()">
       <mat-icon>restaurant</mat-icon> Dietas
     </button>
-    <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: white" *ngIf="isAdmin()">
       <mat-icon>people</mat-icon> Usuarios
     </button>
-    <button mat-button [matMenuTriggerFor]="menuHospitales" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuHospitales" style="color: white" *ngIf="isPaciente()">
       <mat-icon>local_hospital</mat-icon> Hospitales
     </button>
     <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
+      <mat-icon>assessment</mat-icon> Reportes
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuhistorial" style="color: white" *ngIf="isPaciente()">
       <mat-icon>assessment</mat-icon> Reportes
     </button>
   </div>
@@ -38,7 +41,7 @@
 </mat-menu>
 
 <mat-menu #menuUsuarios="matMenu">
-  <button mat-menu-item routerLink="/Usuarioss" *ngIf="isAdmin()">Listar</button>
+  <button mat-menu-item routerLink="/Usuarioss">Listar</button>
 </mat-menu>
 
 <mat-menu #menuHospitales="matMenu">
@@ -50,6 +53,9 @@
   <button mat-menu-item routerLink="/reportes/numberdietinityfinal">Reporte de dietas</button>
   <button mat-menu-item routerLink="/reportes/proportionusers" *ngIf="isAdmin()">Proporción de Usuarios</button>
 </mat-menu>
+<mat-menu #menuhistorial="matMenu">
+  <button mat-menu-item [routerLink]="['historial', iduser]" >Historial</button>
+</mat-menu>
 
 <mat-menu #menuSalir="matMenu">
   <button mat-menu-item routerLink="/login" (click)="cerrar()">
@@ -58,7 +64,7 @@
   </button>
   <button mat-menu-item>
     Rol:
-    <span>{{ role }}</span>
+    <span>{{ iduser }}</span>
   </button>
 </mat-menu>
 <router-outlet></router-outlet>

@@ -29,14 +29,17 @@ export class AppComponent {
   title = 'frontMedLearn';
   role: string = '';
   username: string = '';
+  iduser: number = 0;
   constructor(private loginService: LoginService) {}
   cerrar() {
     sessionStorage.clear();
   }
 
   verificar() {
+
     this.role = this.loginService.showRole();
     this.username = this.loginService.showUser();
+    this.iduser = this.loginService.showIdUser();
     return this.loginService.verificar();
   }
   isPaciente() {
