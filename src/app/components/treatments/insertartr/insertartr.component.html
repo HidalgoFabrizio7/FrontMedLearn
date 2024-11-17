@@ -1,6 +1,7 @@
 <div class="title-container">
   <div class="container" style="text-align: center;margin:5%"><h1>Registro de Tratamientos</h1></div>
   <div class="container" style="text-align: center">
+
     <form [formGroup]="form" (submit)="insertar()" >
 
 
@@ -23,14 +24,6 @@
         </mat-select>
       </mat-form-field>
 
-      <!--
-      <mat-form-field >
-        <mat-label>Usuario </mat-label>
-        <mat-select formControlName="usert">@for(user of listaUser; track user) {
-          <mat-option [value]="user.idUser">{{ user.idUser }}</mat-option>}
-        </mat-select>
-      </mat-form-field>
-      -->
 
 
       <!--<mat-form-field class="example-full-width">

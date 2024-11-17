@@ -8,108 +8,88 @@ import { InsertarusComponent } from './components/users/insertarus/insertarus.co
 import {TreatmentsComponent} from './components/treatments/treatments.component';
 import {InsertartrComponent} from './components/treatments/insertartr/insertartr.component';
 import {ReportesComponent} from './components/reportes/reportes.component';
+import {
+  ReportetratamientoporenfermedadComponent
+} from './components/reportes/reportetratamientoporenfermedad/reportetratamientoporenfermedad.component';
 import { HospitalComponent } from './components/hospital/hospital.component';
 import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
 import { NumberdietinityfinComponent } from './components/reportes/numberdietinityfin/numberdietinityfin.component';
 
 export const routes: Routes = [
-    {
-        path: 'Enfermedades', component: IllnessComponent,
-        children:[
-            {path: 'nuevoenf', component: InsertarComponent,
+  {
+    path: 'Enfermedades', component: IllnessComponent,
+    children:[
+      {path: 'nuevoenf', component: InsertarComponent,
 
-            },
-            {
-                path: 'edicionesenf/:id', component:InsertarComponent,
-            },
-        ],
-    },
+      },
+      {
+        path: 'edicionesenf/:id', component:InsertarComponent,
+      },
+    ],
 
-    {
-        path: 'reportes', component: ReportesComponent,
-        children:[
-            {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
+  },
 
-            },
-            {
-                path: 'edicionesrep/:id', component:InsertarComponent,
-            },
-        ],
-    },
-
-    {
-        path:'Dietas', component:DietComponent,
-        children:[
-            {
-                path: 'nuevodt', component: InsertardtComponent,
-            },
-            {
-                path:'edicionesdt/:id', component:InsertardtComponent,
-            },
-          {
-            path: ':id', component: DietComponent, // Ruta para ver detalles de la dieta de una enfermedad específica
-          },
-        ],
-    },
-    {
-        path:'Tratamientoss', component:TreatmentsComponent,
-        children:[
-            {
-                path: 'nuevotr', component: InsertartrComponent,
-            },
-            {
-                path:'edicionestr/:id', component:InsertartrComponent,
-            },
-        ],
-    },
-
-
-    {
-        path:'Usuarioss', component:UsersComponent,
-        children:[
-            {
-                path: 'nuevous', component: InsertarusComponent,
-                children:[
-                  {
-                      path: 'nuevohp/:id', component: CrearhpComponent,
-                  },
-                ],
-            },
-            {
-              path:'modificar/:id', component: InsertarusComponent,
-            },
-        ],
-    },
-
-    {
+  {
     path: 'reportes', component: ReportesComponent,
     children:[
-        {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
+      {
+        path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
+      },
+      {
+        path: 'edicionesrep/:id', component:InsertarComponent,
+      },
+      {
+        path: 'reportetratamientosporenfermedad', component: ReportetratamientoporenfermedadComponent,
+      },
 
-        },
-        {
-            path: 'edicionesrep/:id', component:InsertarComponent,
-        },
     ],
-},
 
-    {
-      path:'Hospitales', component:HospitalComponent,
-    },
+  },
+
 
   {
-    path:'Tratamientoss', component:TreatmentsComponent,
+    path:'Dietas', component:DietComponent,
     children:[
-        {
-            path: 'nuevotr', component: InsertartrComponent,
-        },
-        {
-            path:'edicionestr/:id', component:InsertartrComponent,
-        },
+      {
+        path: 'nuevodt', component: InsertardtComponent,
+      },
+      {
+        path:'edicionesdt/:id', component:InsertardtComponent,
+      },
+      {
+        path: ':id', component: DietComponent, // Ruta para ver detalles de la dieta de una enfermedad específica
+      },
     ],
-},
+
+  },
   {
-    path:'reportes',component:ReportesComponent,
+    path:'Tratamientoss',
+    component:TreatmentsComponent,
+    children:[
+      {path: 'nuevotr', component: InsertartrComponent,},
+      {path:'edicionestr/:id', component:InsertartrComponent,}
+    ],
+  },
+
+  {
+    path:'Usuarioss', component:UsersComponent,
+    children:[
+      {
+        path: 'nuevous', component: InsertarusComponent,
+        children:[
+          {
+            path: 'nuevohp/:id', component: CrearhpComponent,
+          },
+        ],
+      },
+      {
+        path:'modificar/:id', component: InsertarusComponent,
+      },
+    ],
+
+  },
+
+  {
+    path:'Hospitales', component:HospitalComponent,
   }
 ];
-

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {Treatments} from '../models/treatments';
+import {TreatmentDTO} from '../models/TreatmentDTO';
 const base_url = environment.base;
 
 @Injectable({
@@ -15,7 +16,7 @@ export class TreatmentsService {
   constructor(private http: HttpClient) { }
 
   list() {
-    return this.http.get<Treatments[]>(this.url);
+    return this.http.get<Treatments[]>(`${this.url}/listado`);
   }
   insert(t: Treatments) {
     return this.http.post(`${this.url}/registrar`, t);
@@ -34,4 +35,9 @@ export class TreatmentsService {
   update(tl:Treatments){
     return this.http.put(`${this.url}/actualizar`, tl);
   }
+
+  getCantidad(): Observable<TreatmentDTO[]> {
+    return this.http.get<TreatmentDTO[]>(`${this.url}/cantidades`);
+  }
+
 }

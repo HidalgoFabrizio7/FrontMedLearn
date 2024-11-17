@@ -60,7 +60,7 @@
     <div class="card-header">
       <h2>{{ treatment }}</h2>
       <div>
-        <button mat-icon-button color="primary" [routerLink]="['/edicionestr', treatment.idTreatments]">
+        <button mat-icon-button color="primary" [routerLink]="['edicionestr', treatment.idTreatments]" >
           <mat-icon>edit</mat-icon>
         </button>
       </div>
@@ -73,7 +73,6 @@
       <p><strong>Día de inicio:</strong> {{ treatment.startDayTreatment }}</p>
       <p><strong>Día de término:</strong> {{ treatment.finishDayTreatment }}</p>
       <p><strong>Enfermedad:</strong> {{ treatment.illness.nameIllness }}</p>
-      <!--<p><strong>Usuario:</strong> {{ treatment.user.username }}</p>-->
     </div>
 
     <!-- Botones de acción adicionales (comenzar/finalizar y ver ingredientes) -->

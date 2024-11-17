@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Users } from '../models/Users';
 
@@ -43,6 +43,10 @@ export class UsersService {
 
   getidMayor(){
     return this.http.get<number>(`${this.url}/idmayor`);
+  }
+
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(this.url);
   }
 
 }
