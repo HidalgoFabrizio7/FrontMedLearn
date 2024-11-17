@@ -23,14 +23,16 @@
         </mat-select>
       </mat-form-field>
 
-      <!--
-      <mat-form-field >
-        <mat-label>Usuario </mat-label>
-        <mat-select formControlName="usert">@for(user of listaUser; track user) {
-          <mat-option [value]="user.idUser">{{ user.idUser }}</mat-option>}
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre del Paciente</mat-label>
+        <mat-select formControlName="usert">
+          <mat-option *ngFor="let u of listarNombres" [value]="u.idUser">
+            {{u.username}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
-      -->
+
 
 
       <!--<mat-form-field class="example-full-width">

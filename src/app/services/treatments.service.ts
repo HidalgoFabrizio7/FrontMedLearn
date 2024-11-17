@@ -15,7 +15,7 @@ export class TreatmentsService {
   constructor(private http: HttpClient) { }
 
   list() {
-    return this.http.get<Treatments[]>(this.url);
+    return this.http.get<Treatments[]>(`${this.url}/listado`);
   }
   insert(t: Treatments) {
     return this.http.post(`${this.url}/registrar`, t);

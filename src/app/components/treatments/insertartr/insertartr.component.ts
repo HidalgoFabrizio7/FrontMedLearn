@@ -32,7 +32,7 @@ export class InsertartrComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   treatment:Treatments  = new Treatments();
   listaIllness: Illness[] = [];
-  //listaUser: Users[] = [];
+  listarNombres: Users[] = [];
   id: number = 0;
   edicion: boolean=false;
 
@@ -42,10 +42,11 @@ export class InsertartrComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute,
     private iS: IllnessService,
-    //private uS: UsersService
+    private uS: UsersService
   ) {}
 
   ngOnInit(): void {
+    console.log('Componente InsertardtComponent inicializado');
     this.route.params.subscribe((data: Params) =>{
       this.id=data['id']
       this.edicion=data['id']!=null
@@ -58,36 +59,45 @@ export class InsertartrComponent implements OnInit{
       durationt: ['',Validators.required],
       startt: ['',Validators.required],
       finalizart: ['',Validators.required],
-      illnesst:[''],
-      //usert:[''],
+      illnesst:['', Validators.required],
+      usert:['', Validators.required],
     });
 
     this.iS.list().subscribe((data) => {
       this.listaIllness = data;
     });
 
-    //this.uS.list().subscribe((e) => {
-    //this.listaUser = e;
-    //});
+    this.uS.list().subscribe((e) => {
+    this.listarNombres = e;
+      console.log('Lista de Usuarios cargada:', this.listarNombres);
+    });
   }
+
   insertar(): void {
     if (this.form.valid) {
-      this.treatment.idTreatments=this.form.value.codigot;
+      console.log('Formulario válido:', this.form.valid);
+      //this.treatment.idTreatments=this.form.value.codigot;
       this.treatment.descriptionTreatment = this.form.value.descriptiont;
       this.treatment.durationTreatment = this.form.value.durationt;
       this.treatment.startDayTreatment = this.form.value.startt;
       this.treatment.finishDayTreatment = this.form.value.finalizart;
       this.treatment.illness.idIllness = this.form.value.illnesst;
-      //this.treatment.user.idUser = this.form.value.usert;
+      this.treatment.user.idUser = this.form.value.usert;
+
+      console.log('Objeto Diet preparado para insertar/actualizar:', this.treatment);
 
       if(this.edicion){
+        console.log('Modo edición, llamando a TreatmentsService.update()'); //actualizar
         this.tS.update(this.treatment).subscribe((data) => {
+          console.log('Respuesta de update:', data);
           this.tS.list().subscribe((data) => {
             this.tS.setList(data);
           });
         });
       }else{
+        console.log('Modo creación, llamando a TreatmentsService.insert()');
         this.tS.insert(this.treatment).subscribe((data) => {
+          console.log('Respuesta de insert:', data);
           this.tS.list().subscribe((data) => {
             this.tS.setList(data);
           });
@@ -95,12 +105,17 @@ export class InsertartrComponent implements OnInit{
       }
 
     }
+    else {
+      console.warn('Formulario no válido, verifique los errores.');
+    }
     this.router.navigate(['Tratamientoss']);
 
   }
   init(){
     if(this.edicion){
+      console.log('Inicializando el formulario en modo edición para ID:', this.id);
       this.tS.listId(this.id).subscribe(data=>{
+        console.log('Datos recibidos para edición:', data);
         this.form=new FormGroup({
           codigot:new FormControl(data.idTreatments),
           descriptiont:new FormControl(data.descriptionTreatment),
@@ -108,7 +123,7 @@ export class InsertartrComponent implements OnInit{
           startt: new FormControl(data.startDayTreatment),
           finalizart:new FormControl(data.finishDayTreatment),
           illnesst:new FormControl(data.illness.idIllness),
-          //usert:new FormControl(data.user.idUser),
+          usert:new FormControl(data.user.idUser),
         })
       })
     }
