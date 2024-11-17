@@ -22,6 +22,7 @@ import { InsertarexComponent } from './components/exercises/insertarex/insertare
 import { ExercisesComponent } from './components/exercises/exercises.component';
 import { TotalcaloriaspordietaComponent } from './components/reportes/totalcaloriaspordieta/totalcaloriaspordieta.component';
 import { TotalejerciciospordietaComponent } from './components/reportes/totalejerciciospordieta/totalejerciciospordieta.component';
+import { PromedioduraciontratamientoComponent } from './components/reportes/promedioduraciontratamiento/promedioduraciontratamiento.component';
 
 export const routes: Routes = [
   {
@@ -139,6 +140,9 @@ export const routes: Routes = [
         {
           path: 'edicionesrep/:id', component:InsertarComponent,
         },
+      {
+        path: 'promedioduraciontratamiento', component: PromedioduraciontratamientoComponent,
+      }
     ],
 
   },

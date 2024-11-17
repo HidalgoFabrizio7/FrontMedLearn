@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {Treatments} from '../models/treatments';
+import {AverageDurationByTreatmentTypeDTO} from '../models/AverageDurationByTreatmentTypeDTO';
 const base_url = environment.base;
 
 @Injectable({
@@ -34,4 +35,9 @@ export class TreatmentsService {
   update(tl:Treatments){
     return this.http.put(`${this.url}/actualizar`, tl);
   }
+  getAverage(): Observable<AverageDurationByTreatmentTypeDTO[]> {
+    return this.http.get<AverageDurationByTreatmentTypeDTO[]>(`${this.url}/promedioDuracion`);
+  }
+
+
 }
