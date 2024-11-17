@@ -99,14 +99,11 @@ export const routes: Routes = [
     {
     path: 'reportes', component: ReportesComponent,
     children:[
-        {path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
-
-        },
         {
-            path: 'edicionesrep/:id', component:InsertarComponent,
+            path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
         },
     ],
-},
+    },
 
     {
       path:'Hospitales', component:HospitalComponent,
