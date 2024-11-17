@@ -17,9 +17,9 @@ export class IllnessService {
   list(){
     return this.http.get<Illness[]>(this.url);
   }
-  
+
   insert(i: Illness){
-    return this.http.post(this.url, i);
+    return this.http.post(`${this.url}/insertar`, i);
   }
 
   setList(listaNueva: Illness[]){
@@ -39,5 +39,5 @@ export class IllnessService {
   update(il: Illness) {
     return this.http.put(this.url, il);
   }
-  
+
 }

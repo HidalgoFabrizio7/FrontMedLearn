@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Users } from '../models/Users';
+import { QuantityUsersByRolDTO } from '../models/QuantityUsersByRolDTO';
 
 
 const base_url = environment.base
@@ -16,11 +17,15 @@ export class UsersService {
   constructor(private http: HttpClient) { };
 
   list(){
-    return this.http.get<Users[]>(`${this.url}/listado`);
+    return this.http.get<Users[]>(`${base_url}/listarini`);
   }
   insert(u: Users){
     return this.http.post(`${base_url}/crearcuenta`, u);
   }
+
+  insertRol(rol: string, idus: number){
+    return this.http.post(`${base_url}/usuarios/${idus}/roles?rol=${rol}`,null)
+  };
 
   getList() {
     return this.listaCambio.asObservable();
@@ -38,8 +43,14 @@ export class UsersService {
   }
 
   searchByName(name: String) {
-    return this.http.get<Users>(`${this.url}/buscarpornombre`);
+    return this.http.get<Users[]>(`${this.url}/buscarpornombre?name=${name}`);
   }
 
+  getidMayor(){
+    return this.http.get<number>(`${base_url}/idmayor`);
+  }
 
+  getUserProportions(){
+    return this.http.get<QuantityUsersByRolDTO[]>(`${this.url}/controldeusuarios`);
+  }
 }

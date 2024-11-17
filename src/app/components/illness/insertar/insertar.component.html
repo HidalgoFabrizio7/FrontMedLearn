@@ -9,26 +9,47 @@
                 <mat-label>Código de enfermedad</mat-label>
                 <input matInput formControlName="codigo" readonly="true"/>
               </mat-form-field>
-        
             <br />
+            <!-- nombre -->
             <mat-form-field class="example-full-width">
-                <mat-label>Enfermedad</mat-label>
+                <mat-label>Nombre de Enfermedad</mat-label>
                 <input matInput placeholder="Ej. Gripe" formControlName="hnombre" />
             </mat-form-field>
             <br />
+            <!-- text area -->
             <mat-form-field class="example-full-width">
-                <mat-label>Descripción</mat-label>
-                <input matInput placeholder="Ej. una bacteria que te enferma" formControlName="hdescripcion" />
+                <mat-label>Descripción</mat-label> 
+                <textarea
+                matInput
+                placeholder="Ej. una bacteria que te enferma"
+                formControlName="hdescripcion"
+                ></textarea>
+
             </mat-form-field>
             <br />
+            <!--subir la imagen -->
             <mat-form-field class="example-full-width">
                 <mat-label>Ruta de Imagen</mat-label>
-                <input matInput placeholder="Ej. ruta/a/la/imagen.jpg" formControlName="himage" />
+                <input matInput placeholder="Ej. nombre-de-la-imagen.jpg" formControlName="himage" />
             </mat-form-field>
             <br />
+            <!-- Seleccionar archivo -->
+            <div class="file-drop-area" (click)="fileInput.click()">
+                <p *ngIf="!fileName">Arrastra una imagen aquí o haz clic para seleccionar</p>
+                <p *ngIf="fileName">Imagen seleccionada: {{ fileName }}</p>
+                <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" accept=".png, .jpg, .jpeg" />
+            </div>
+            <br />
+            <!-- Previsualización de la imagen -->
+            <div *ngIf="imageURL" class="preview-container">
+                <h3>Previsualización de la Imagen</h3>
+                <img [src]="imageURL" alt="Previsualización de la Imagen" class="preview-image" />
+            </div>
+            <br />
+            <!--contador-->
             <mat-form-field class="example-full-width">
                 <mat-label>Contador de Vistas</mat-label>
-                <input matInput type="number" placeholder="Ej. 0" formControlName="hcontador" />
+                <input matInput type="number" placeholder="Ej. 0" formControlName="hcontador"   />
             </mat-form-field>
             <br />
             <div class="button-container">
