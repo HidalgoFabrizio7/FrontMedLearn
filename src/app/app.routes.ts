@@ -8,9 +8,9 @@ import { UsersComponent } from './components/users/users.component';
 import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
 import {TreatmentsComponent} from './components/treatments/treatments.component';
 import {InsertartrComponent} from './components/treatments/insertartr/insertartr.component';
-import {ReportesComponent} from './components/reportes/reportes.component';
 import { HospitalComponent } from './components/hospital/hospital.component';
 import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
 import { NumberdietinityfinComponent } from './components/reportes/numberdietinityfin/numberdietinityfin.component';
 import { ProporcionUsersComponent } from './components/reportes/proporcion-users/proporcion-users.component';
 import { LoginComponent } from './components/login/login.component';
@@ -19,6 +19,10 @@ import { seguridadGuard } from '../guard/seguridad.guard';
 import { HistorialComponent } from './components/historial/historial.component';
 import { HistorialdietasComponent } from './components/historial/historialdietas/historialdietas.component';
 import { ListardtComponent } from './components/diet/listardt/listardt.component';
+import { ExercisesComponent } from './components/exercises/exercises.component';
+import { InsertarexComponent } from './components/exercises/insertarex/insertarex.component';
+import { FoodComponent } from './components/food/food.component';
+import { InsertarfdComponent } from './components/food/insertarfd/insertarfd.component';
 
 export const routes: Routes = [
     {
@@ -82,27 +86,48 @@ export const routes: Routes = [
         ],
         canActivate: [seguridadGuard],
     },
+    {
+      path:'Ejercicios', component:ExercisesComponent,
+      children:[
+          {
+              path: 'nuevoex', component: InsertarexComponent,
+          },
+          {
+            path:'edicionesex/:id', component: InsertarexComponent,
+          },
+      ],
+
+    },
+    {
+      path:'Alimentos', component:FoodComponent,
+      children:[
+          {
+              path: 'nuevofd', component: InsertarfdComponent,
+          },
+          {
+            path:'edicionesfd/:id', component: InsertarfdComponent,
+          },
+      ],
+
+    },
 
     {
       path:'Usuarioss', component:UsersComponent,
       children:[
           {
               path: 'nuevous', component: InsertarusComponent,
+              children:[
+                {
+                    path: 'nuevohp/:id', component: CrearhpComponent,
+                },
+              ],
           },
       ],
     },
 
     {
-    path: 'reportes', component: ReportesComponent,
-    children:[
-        {
-            path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
-        },
-    ],
-    },
-
-    {
       path:'Hospitales', component:HospitalComponent,
+      canActivate: [seguridadGuard],
     },
 
     {
@@ -129,6 +154,7 @@ export const routes: Routes = [
     path:'historial/:id', component:ListardtComponent,
     canActivate: [seguridadGuard],
   },
+
 
 ];
 

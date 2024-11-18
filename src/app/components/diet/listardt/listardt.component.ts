@@ -7,7 +7,6 @@ import { Diet } from '../../../models/Diet';
 import { DietService } from '../../../services/diet.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { CommonModule } from '@angular/common';
-import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listardt',
@@ -60,7 +59,6 @@ export class ListardtComponent implements OnInit{
       });
     });
   }
-
   startDiet(diet: Diet): void {
     diet.startDayDiet = new Date(); // Captura la fecha actual al hacer clic
     this.dT.update(diet).subscribe(() => {
@@ -102,7 +100,6 @@ export class ListardtComponent implements OnInit{
         });
       }
     }
-
 
   }
 

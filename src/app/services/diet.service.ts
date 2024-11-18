@@ -4,7 +4,6 @@ import { Diet } from '../models/Diet';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { QuantityBydietsinicidasydietsfinalizadasbyuser } from '../models/QuantityBydietsinicidasydietsfinalizadasbyuser';
-
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'

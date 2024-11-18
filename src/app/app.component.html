@@ -21,6 +21,12 @@
     <button mat-button [matMenuTriggerFor]="menuhistorial" style="color: white" *ngIf="isPaciente()">
       <mat-icon>assessment</mat-icon> Historial
     </button>
+    <button mat-button [matMenuTriggerFor]="menuExercices" style="color: white">
+      <mat-icon>directions_run</mat-icon>Ejercicios
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuFoods" style="color: white">
+      <mat-icon>fastfood</mat-icon>Alimentos
+    </button>
   </div>
   <div class="right-menu">
     <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white">
@@ -55,6 +61,16 @@
 
 <mat-menu #menuhistorial="matMenu">
   <button mat-menu-item [routerLink]="['historial', iduser]" >Historial</button>
+</mat-menu>
+
+<mat-menu #menuFoods="matMenu">
+  <button mat-menu-item routerLink="/Alimentos">Listar</button>
+  <button mat-menu-item routerLink="/Alimentos/nuevofd">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuExercices="matMenu">
+  <button mat-menu-item routerLink="/Ejercicios">Listar</button>
+  <button mat-menu-item routerLink="/Ejercicios/nuevoex">Registrar</button>
 </mat-menu>
 
 <mat-menu #menuSalir="matMenu">
