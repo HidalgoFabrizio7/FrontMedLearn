@@ -7,7 +7,6 @@ import { Diet } from '../../../models/Diet';
 import { DietService } from '../../../services/diet.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { CommonModule } from '@angular/common';
-import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listardt',

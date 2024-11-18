@@ -4,7 +4,6 @@ import { Diet } from '../models/Diet';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { QuantityBydietsinicidasydietsfinalizadasbyuser } from '../models/QuantityBydietsinicidasydietsfinalizadasbyuser';
-
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -16,10 +15,10 @@ export class DietService {
   constructor(private http: HttpClient) { }
 
   list() {
-    return this.http.get<Diet[]>(this.url);
+    return this.http.get<Diet[]>(`${this.url}/listado`);
   }
   insert(d: Diet) {
-    return this.http.post(this.url, d);
+    return this.http.post(`${base_url}/registrar`, d);
   }
   getList() {
     return this.listaCambio.asObservable();

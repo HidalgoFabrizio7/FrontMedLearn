@@ -7,7 +7,6 @@ import { Router, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-listar',
   standalone: true,

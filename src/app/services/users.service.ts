@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Users } from '../models/Users';
 import { QuantityUsersByRolDTO } from '../models/QuantityUsersByRolDTO';
@@ -20,7 +20,7 @@ export class UsersService {
     return this.http.get<Users[]>(`${base_url}/listarini`);
   }
 
-  
+
 
   insert(u: Users){
     return this.http.post(`${base_url}/crearcuenta`, u);
