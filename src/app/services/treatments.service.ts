@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Treatments } from '../models/treatments';
+import {Treatments} from '../models/treatments';
+import {TreatmentDTO} from '../models/TreatmentDTO';
 const base_url = environment.base;
 
 @Injectable({
@@ -12,7 +13,7 @@ export class TreatmentsService {
   private url = `${base_url}/Tratamientos`;
   private listaCambio = new Subject<Treatments[]>();
 
-  constructor(private http: HttpClient) { };
+  constructor(private http: HttpClient) { }
 
   list() {
     return this.http.get<Treatments[]>(`${this.url}/listado`);
@@ -20,22 +21,23 @@ export class TreatmentsService {
   insert(t: Treatments) {
     return this.http.post(`${this.url}/registrar`, t);
   }
-  setList(listaNueva: Treatments[]) {
-    this.listaCambio.next(listaNueva);
-  }
-
   getList() {
     return this.listaCambio.asObservable();
   }
 
-  delete(id: number){
-    return this.http.delete(`${this.url}/${id}`);
+  setList(listaNueva: Treatments[]) {
+    this.listaCambio.next(listaNueva);
   }
 
   listId(id: number) {
     return this.http.get<Treatments>(`${this.url}/${id}`);
   }
   update(tl:Treatments){
-    return this.http.put(`${this.url}/actualizar`,tl);
+    return this.http.put(`${this.url}/actualizar`, tl);
   }
+
+  getCantidad(): Observable<TreatmentDTO[]> {
+    return this.http.get<TreatmentDTO[]>(`${this.url}/cantidades`);
+  }
+
 }

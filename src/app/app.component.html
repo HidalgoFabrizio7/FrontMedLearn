@@ -12,8 +12,8 @@
     <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: white" *ngIf="isAdmin()">
       <mat-icon>people</mat-icon> Usuarios
     </button>
-    <button mat-button [matMenuTriggerFor]="menuHospitales" style="color: white" *ngIf="isPaciente()">
-      <mat-icon>local_hospital</mat-icon> Hospitales
+    <button mat-button [matMenuTriggerFor]="menuTratamientos" style="color: white">
+      Tratamientos
     </button>
     <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
       <mat-icon>assessment</mat-icon> Reportes
@@ -59,6 +59,7 @@
   <button mat-menu-item routerLink="/reportes/proportionusers" *ngIf="isAdmin()">Proporción de Usuarios</button>
   <button mat-menu-item routerLink="/reportes/totalcaloriaspordieta" *ngIf="isPaciente()">Total calorias por Dieta</button>
   <button mat-menu-item routerLink="/reportes/totalejerciciospordieta" *ngIf="isPaciente()">Total ejercicios por Dieta</button>
+  <button mat-menu-item routerLink="/reportes/reportetratamientosporenfermedad">Tratamientos por enfermedad</button>
 </mat-menu>
 
 <mat-menu #menuhistorial="matMenu">
@@ -75,15 +76,21 @@
   <button mat-menu-item routerLink="/Ejercicios/nuevoex">Registrar</button>
 </mat-menu>
 
+<mat-menu #menuTratamientos="matMenu">
+  <button mat-menu-item routerLink="/Tratamientoss">Listar</button>
+  <button mat-menu-item routerLink="/Tratamientoss/nuevotr">Registrar</button>
+</mat-menu>
+
 <mat-menu #menuSalir="matMenu">
   <button mat-menu-item routerLink="/login" (click)="cerrar()">
     <mat-icon>logout</mat-icon>
     <span>Cerrar sesión</span>
   </button>
-
   <button mat-menu-item>
     Rol:
     <span>{{ role }}</span>
   </button>
+  <button mat-menu-item routerLink="/Usuarioss/nuevous">Registrar</button>
 </mat-menu>
+
 <router-outlet></router-outlet>

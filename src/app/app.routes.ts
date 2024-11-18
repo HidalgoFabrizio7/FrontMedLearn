@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { IllnessComponent } from './components/illness/illness.component';
 import { InsertarComponent } from './components/illness/insertar/insertar.component';
@@ -74,6 +73,9 @@ export const routes: Routes = [
             },
             {
               path: 'totalejerciciospordieta', component: TotalejerciciospordietaComponent,
+            },
+            {
+              path: 'reportetratamientosporenfermedad', component: ReportetratamientoporenfermedadComponent,
             }
         ],
         canActivate: [seguridadGuard],
@@ -143,18 +145,16 @@ export const routes: Routes = [
         component: HomeComponent,
         canActivate: [seguridadGuard],
     },
-
   {
-    path:'Tratamientoss', component:TreatmentsComponent,
+    path: 'Enfermedades', component: IllnessComponent,
     children:[
-        {
-            path: 'nuevotr', component: InsertartrComponent,
-        },
-        {
-            path:'edicionestr/:id', component:InsertartrComponent,
-        },
+      {path: 'nuevoenf', component: InsertarComponent,
+
+      },
+      {
+        path: 'edicionesenf/:id', component:InsertarComponent,
+      },
     ],
-    canActivate: [seguridadGuard],
 
   },
 
@@ -163,6 +163,15 @@ export const routes: Routes = [
     canActivate: [seguridadGuard],
   },
 
+  {
+    path:'Tratamientoss',
+    component:TreatmentsComponent,
+    children:[
+      {path: 'nuevotr', component: InsertartrComponent,},
+      {path:'edicionestr/:id', component:InsertartrComponent,}
+    ],
+  },
 
 ];
+
 

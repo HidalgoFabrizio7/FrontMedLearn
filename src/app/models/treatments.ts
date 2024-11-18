@@ -7,6 +7,6 @@ export class Treatments{
   durationTreatment: number=0
   startDayTreatment:Date = new Date(Date.now())
   finishDayTreatment:Date = new Date(Date.now())
-  illness:Illness=new Illness()
   user:Users=new Users()
+  illness:Illness=new Illness()
 }
