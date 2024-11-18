@@ -57,6 +57,8 @@
 <mat-menu #menuReportes="matMenu">
   <button mat-menu-item routerLink="/reportes/numberdietinityfinal">Reporte de dietas</button>
   <button mat-menu-item routerLink="/reportes/proportionusers" *ngIf="isAdmin()">Proporción de Usuarios</button>
+  <button mat-menu-item routerLink="/reportes/totalcaloriaspordieta" *ngIf="isPaciente()">Total calorias por Dieta</button>
+  <button mat-menu-item routerLink="/reportes/totalejerciciospordieta" *ngIf="isPaciente()">Total ejercicios por Dieta</button>
 </mat-menu>
 
 <mat-menu #menuhistorial="matMenu">

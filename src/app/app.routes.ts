@@ -23,6 +23,8 @@ import { ExercisesComponent } from './components/exercises/exercises.component';
 import { InsertarexComponent } from './components/exercises/insertarex/insertarex.component';
 import { FoodComponent } from './components/food/food.component';
 import { InsertarfdComponent } from './components/food/insertarfd/insertarfd.component';
+import { TotalcaloriaspordietaComponent } from './components/reportes/totalcaloriaspordieta/totalcaloriaspordieta.component';
+import { TotalejerciciospordietaComponent } from './components/reportes/totalejerciciospordieta/totalejerciciospordieta.component';
 
 export const routes: Routes = [
     {
@@ -67,6 +69,12 @@ export const routes: Routes = [
             {
                 path: 'proportionusers', component: ProporcionUsersComponent,
             },
+            {
+              path: 'totalcaloriaspordieta', component: TotalcaloriaspordietaComponent,
+            },
+            {
+              path: 'totalejerciciospordieta', component: TotalejerciciospordietaComponent,
+            }
         ],
         canActivate: [seguridadGuard],
     },
