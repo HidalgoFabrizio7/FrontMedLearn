@@ -9,6 +9,7 @@ import { ListarComponent } from './listar/listar.component';
   templateUrl: './illness.component.html',
   styleUrl: './illness.component.css'
 })
+
 export class IllnessComponent {
   constructor(public route:ActivatedRoute){}
 }

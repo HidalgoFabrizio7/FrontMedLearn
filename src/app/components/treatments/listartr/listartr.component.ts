@@ -28,4 +28,6 @@ export class ListartrComponent implements OnInit{
       this.datasource= data;
     });
   }
+
+  protected readonly elements = elements;
 }

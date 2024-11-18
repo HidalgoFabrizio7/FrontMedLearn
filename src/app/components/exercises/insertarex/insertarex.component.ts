@@ -83,7 +83,11 @@ export class InsertarexComponent implements OnInit {
           });
         });
       } else {
+
         console.log('Modo creación, llamando a ExerciseService.insert()');
+
+        console.log(this.exercise);
+
         this.exerciseService.insert(this.exercise).subscribe((data) => {
           console.log('Respuesta de insert:', data);
           this.exerciseService.list().subscribe((data) => {

@@ -4,6 +4,7 @@ import {Observable, Subject} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {Treatments} from '../models/treatments';
 import {TreatmentDTO} from '../models/TreatmentDTO';
+import {AverageDurationByTreatmentTypeDTO} from '../models/AverageDurationByTreatmentTypeDTO';
 const base_url = environment.base;
 
 @Injectable({
@@ -39,5 +40,10 @@ export class TreatmentsService {
   getCantidad(): Observable<TreatmentDTO[]> {
     return this.http.get<TreatmentDTO[]>(`${this.url}/cantidades`);
   }
+
+  getAverage(): Observable<AverageDurationByTreatmentTypeDTO[]> {
+    return this.http.get<AverageDurationByTreatmentTypeDTO[]>(`${this.url}/promedioDuracion`);
+  }
+
 
 }

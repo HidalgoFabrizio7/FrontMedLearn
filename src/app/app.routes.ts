@@ -3,8 +3,13 @@ import { IllnessComponent } from './components/illness/illness.component';
 import { InsertarComponent } from './components/illness/insertar/insertar.component';
 import { DietComponent } from './components/diet/diet.component';
 import { InsertardtComponent } from './components/diet/insertardt/insertardt.component';
+import { MedicineComponent } from './components/medicine/medicine.component';
+import { InsertarmedComponent } from './components/medicine/insertarmed/insertarmed.component';
 import { UsersComponent } from './components/users/users.component';
 import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
+import { InsertarquanComponent } from './components/quantity/insertarquan/insertarquan.component';
+import { ListarquanComponent } from './components/quantity/listarquan/listarquan.component';
+import { QuantityComponent } from './components/quantity/quantity.component';
 import {TreatmentsComponent} from './components/treatments/treatments.component';
 import {InsertartrComponent} from './components/treatments/insertartr/insertartr.component';
 
@@ -19,12 +24,14 @@ import { seguridadGuard } from '../guard/seguridad.guard';
 import { HistorialComponent } from './components/historial/historial.component';
 import { HistorialdietasComponent } from './components/historial/historialdietas/historialdietas.component';
 import { ListardtComponent } from './components/diet/listardt/listardt.component';
-import { ExercisesComponent } from './components/exercises/exercises.component';
-import { InsertarexComponent } from './components/exercises/insertarex/insertarex.component';
-import { FoodComponent } from './components/food/food.component';
 import { InsertarfdComponent } from './components/food/insertarfd/insertarfd.component';
+import { FoodComponent } from './components/food/food.component';
+import { InsertarexComponent } from './components/exercises/insertarex/insertarex.component';
+import { ExercisesComponent } from './components/exercises/exercises.component';
 import { TotalcaloriaspordietaComponent } from './components/reportes/totalcaloriaspordieta/totalcaloriaspordieta.component';
 import { TotalejerciciospordietaComponent } from './components/reportes/totalejerciciospordieta/totalejerciciospordieta.component';
+import { PromedioduraciontratamientoComponent } from './components/reportes/promedioduraciontratamiento/promedioduraciontratamiento.component';
+
 import { ReportetratamientoporenfermedadComponent } from './components/reportes/reportetratamientoporenfermedad/reportetratamientoporenfermedad.component';
 
 export const routes: Routes = [
@@ -147,18 +154,6 @@ export const routes: Routes = [
         component: HomeComponent,
         canActivate: [seguridadGuard],
     },
-  {
-    path: 'Enfermedades', component: IllnessComponent,
-    children:[
-      {path: 'nuevoenf', component: InsertarComponent,
-
-      },
-      {
-        path: 'edicionesenf/:id', component:InsertarComponent,
-      },
-    ],
-
-  },
 
   {
     path:'historial/:id', component:ListardtComponent,
