@@ -7,6 +7,7 @@ import { UsersComponent } from './components/users/users.component';
 import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
 import {TreatmentsComponent} from './components/treatments/treatments.component';
 import {InsertartrComponent} from './components/treatments/insertartr/insertartr.component';
+
 import { HospitalComponent } from './components/hospital/hospital.component';
 import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
@@ -24,6 +25,7 @@ import { FoodComponent } from './components/food/food.component';
 import { InsertarfdComponent } from './components/food/insertarfd/insertarfd.component';
 import { TotalcaloriaspordietaComponent } from './components/reportes/totalcaloriaspordieta/totalcaloriaspordieta.component';
 import { TotalejerciciospordietaComponent } from './components/reportes/totalejerciciospordieta/totalejerciciospordieta.component';
+import { ReportetratamientoporenfermedadComponent } from './components/reportes/reportetratamientoporenfermedad/reportetratamientoporenfermedad.component';
 
 export const routes: Routes = [
     {
