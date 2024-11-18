@@ -85,7 +85,11 @@ export const routes: Routes = [
             },
             {
               path: 'reportetratamientosporenfermedad', component: ReportetratamientoporenfermedadComponent,
+            },
+            {
+              path: 'promedioduraciontratamiento', component: PromedioduraciontratamientoComponent,
             }
+
         ],
         canActivate: [seguridadGuard],
     },
@@ -115,8 +119,30 @@ export const routes: Routes = [
             path:'edicionesex/:id', component: InsertarexComponent,
           },
       ],
-
     },
+    {
+      path:'Medicinas', component:MedicineComponent,
+      children:[
+          {
+              path: 'nuevomed', component: InsertarmedComponent,
+          },
+          {
+              path:'edicionesmed/:id', component:InsertarmedComponent,
+          },
+      ],
+  },
+  {
+    path:'Cantidades', component:QuantityComponent,
+    children:[
+        {
+            path: 'nuevoCanti', component: InsertarquanComponent,
+        },
+        {
+          path:'editas/:id', component: InsertarquanComponent,
+        },
+    ],
+
+  },
     {
       path:'Alimentos', component:FoodComponent,
       children:[

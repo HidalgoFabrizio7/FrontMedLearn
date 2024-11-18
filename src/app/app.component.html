@@ -6,6 +6,9 @@
     <button mat-button [matMenuTriggerFor]="menuEnfermedad" style="color: white">
       <mat-icon>healing</mat-icon> Enfermedad
     </button>
+    <button mat-button [matMenuTriggerFor]="menuMedicinas" style="color: white">
+      Medicinas
+    </button>
     <button mat-button [matMenuTriggerFor]="menuDietas" style="color: white" *ngIf="isNutricionista()">
       <mat-icon>restaurant</mat-icon> Dietas
     </button>
@@ -101,7 +104,6 @@
     Rol:
     <span>{{ role }}</span>
   </button>
-  <button mat-menu-item routerLink="/Usuarioss/nuevous">Registrar</button>
 </mat-menu>
 
 <router-outlet></router-outlet>
