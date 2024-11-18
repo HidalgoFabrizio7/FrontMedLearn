@@ -28,6 +28,11 @@ export const routes: Routes = [
     },
     {
         path: 'nuevacuenta', component: InsertarusComponent,
+        children:[
+          {
+              path: 'nuevohp/:id', component: CrearhpComponent,
+          },
+        ],
     },
     {
         path: 'login',
@@ -83,17 +88,8 @@ export const routes: Routes = [
       children:[
           {
               path: 'nuevous', component: InsertarusComponent,
-              children:[
-                {
-                    path: 'nuevohp/:id', component: CrearhpComponent,
-                },
-              ],
-          },
-          {
-            path:'modificar/:id', component: InsertarusComponent,
           },
       ],
-      canActivate: [seguridadGuard],
     },
 
     {
@@ -107,7 +103,6 @@ export const routes: Routes = [
 
     {
       path:'Hospitales', component:HospitalComponent,
-      canActivate: [seguridadGuard],
     },
 
     {
@@ -126,11 +121,14 @@ export const routes: Routes = [
             path:'edicionestr/:id', component:InsertartrComponent,
         },
     ],
-},
+    canActivate: [seguridadGuard],
 
-{
-  path:'historial/:id', component:ListardtComponent,
-},
+  },
+
+  {
+    path:'historial/:id', component:ListardtComponent,
+    canActivate: [seguridadGuard],
+  },
 
 ];
 
