@@ -4,11 +4,18 @@
       <h3>Registrar ubicación de trabajo</h3>
     </div>
     <form [formGroup]="form" (submit)="agregar()">
+
       <mat-form-field class="example-full-width">
-        <mat-label>Nombre del Hospital</mat-label>
-        <input matInput placeholder="ejem. Hospital Sonrisas" formControlName="hnameHospital"/>
+      <mat-label>Nombre del Hospital</mat-label>
+      <input type="text" placeholder="Pick one" matInput formControlName="hnameHospital" [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let h of listaHospitales" [value]="h.nameHospital">
+          {{h.nameHospital}}
+        </mat-option>
+      </mat-autocomplete>
       </mat-form-field>
       <br />
+
       <mat-form-field class="example-full-width">
         <mat-label>Dirección</mat-label>
         <input #inputField matInput [placeholder]="placeholder" />

@@ -15,10 +15,10 @@ export class DietService {
   constructor(private http: HttpClient) { }
 
   list() {
-    return this.http.get<Diet[]>(`${this.url}/listado`);
+    return this.http.get<Diet[]>(this.url);
   }
   insert(d: Diet) {
-    return this.http.post(`${base_url}/registrar`, d);
+    return this.http.post(this.url, d);
   }
   getList() {
     return this.listaCambio.asObservable();

@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,6 +8,7 @@ import { HospitalService } from '../../../services/hospital.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-crearhp',
@@ -19,17 +20,21 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     MatButtonModule,
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    MatAutocompleteModule,
+    MatInputModule
   ],
   templateUrl: './crearhp.component.html',
   styleUrls: ['./crearhp.component.css']
 })
 export class CrearhpComponent implements OnInit{
   form: FormGroup = new FormGroup({});
+  myControl = new FormControl('');
+
   hospital: Hospital = new Hospital();
   autocomplete: google.maps.places.Autocomplete | undefined;
   id: number = 0;
-
+  listaHospitales: Hospital[] = [];
 
   constructor(
     private hS: HospitalService,
@@ -42,6 +47,9 @@ export class CrearhpComponent implements OnInit{
 
 
   ngOnInit(): void {
+    this.hS.list().subscribe((data) => {
+      this.listaHospitales = data;
+    });
 
     this.form = this.formBuilder.group({
       hnameHospital:[''],
