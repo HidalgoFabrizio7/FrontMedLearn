@@ -13,6 +13,7 @@ import { Illness } from '../../../models/Illness';
 import { Users } from '../../../models/Users';
 import { UsersService } from '../../../services/users.service';
 import { IllnessService } from '../../../services/illness.service';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-insertardt',
@@ -37,6 +38,7 @@ export class InsertardtComponent implements OnInit {
   edicion: boolean = false;
   listaEnfermedades: Illness[] = [];
   listarNombres: Users[] = [];
+  iduser: number = 0;
 
   constructor(
     private deS: DietService,
@@ -44,10 +46,14 @@ export class InsertardtComponent implements OnInit {
     private iS: IllnessService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService
   ) {
-    this.diet.startDayDiet= new Date(Date.now())
-    this.diet.startDayDiet= new Date(Date.now())
+  }
+
+  verificar() {
+    this.iduser = this.loginService.showIdUser();
+    return this.loginService.verificar();
   }
 
   ngOnInit(): void {
@@ -63,10 +69,10 @@ export class InsertardtComponent implements OnInit {
       codigod: [''],
       descriptiond: ['', Validators.required],
       durationd: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      //startd: [''],
-      //finalizard: [''],
+      startd: [''],
+      finalizard: [''],
       illnessd: ['', Validators.required],
-      userd: ['', Validators.required],
+      userd: [''],
     });
 
     this.iS.list().subscribe((data) => {
@@ -84,12 +90,15 @@ export class InsertardtComponent implements OnInit {
     console.log('Formulario válido:', this.form.valid);
     if (this.form.valid) {
       console.log('Valores del formulario:', this.form.value);
-      
-      //this.diet.idDiet = this.form.value.codigod;
+      this.form.patchValue({
+        startd: '2024-11-15',
+        finalizard: '2024-11-15'
+      });
+      this.diet.idDiet = this.form.value.codigod;
       this.diet.descriptionDiet = this.form.value.descriptiond;
       this.diet.durationDiet = this.form.value.durationd;
-      //this.diet.startDayDiet = this.form.value.startd;
-      //this.diet.finishDayDiet = this.form.value.finalizard;
+      this.diet.startDayDiet = this.form.value.startd;
+      this.diet.finishDayDiet = this.form.value.finalizard;
       this.diet.illness.idIllness = this.form.value.illnessd // Crea un objeto Illness para asignar el ID
       this.diet.user.idUser = this.form.value.userd; // Crea un objeto Users para asignar el ID
 
@@ -106,7 +115,6 @@ export class InsertardtComponent implements OnInit {
       } else {
         console.log('Modo creación, llamando a DietService.insert()');
         this.deS.insert(this.diet).subscribe((data) => {
-          console.log('Respuesta de insert:', data);
           this.deS.list().subscribe((data) => {
             this.deS.setList(data);
           });

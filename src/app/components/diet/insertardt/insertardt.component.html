@@ -1,5 +1,6 @@
 <div class="title-container">
-    <div class="container" style="text-align: center;margin:5%"><h1>Registro de Dietas</h1></div>
+    <div class="container" style="text-align: center;margin:5%">
+      <h1>Registro de Dietas</h1></div>
     <div class="container" style="text-align: center">
       <form [formGroup]="form" (submit)="insertar()" >
 
@@ -13,14 +14,14 @@
           <!-- Text area- BIEN -->
           <mat-form-field class="example-full-width">
           <mat-label>Descripción de Dieta</mat-label>
-          <textarea matInput placeholder="Ejem. Preparar un jugo verde todas las mañanas" formControlName="descriptiond" required></textarea>
+          <textarea matInput placeholder="Ejem. Preparar un jugo verde todas las mañanas" formControlName="descriptiond"></textarea>
           </mat-form-field>
 
         <br />
           <!-- Input--BIEN -->
           <mat-form-field class="example-full-width">
           <mat-label>Duración de la dieta</mat-label>
-          <input matInput placeholder="Ejem. 7 días"  formControlName="durationd" required/>
+          <input matInput placeholder="Ejem. 7 días" formControlName="durationd"/>
           </mat-form-field>
 
           <!--Boton de acción que se guarda la fecha
@@ -47,7 +48,7 @@
               <mat-option *ngFor="let i of listaEnfermedades" [value]="i.idIllness">
                 {{i.nameIllness}}
               </mat-option>
-            </mat-select>     
+            </mat-select>
           </mat-form-field>
         <br />
           <!-- Map option -->
@@ -57,12 +58,12 @@
               <mat-option *ngFor="let u of listarNombres" [value]="u.idUser">
                 {{u.username}}
               </mat-option>
-            </mat-select>     
+            </mat-select>
           </mat-form-field>
 
         <br />
         <div style="text-align: center;">
-          <button mat-flat-button  color="warn">Registrar</button>
+          <button mat-flat-button color="warn">Registrar</button>
         </div>
       </form>
     </div>

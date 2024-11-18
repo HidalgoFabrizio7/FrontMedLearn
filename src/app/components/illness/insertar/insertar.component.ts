@@ -50,6 +50,7 @@ export class InsertarComponent implements OnInit{
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
+      console.log('Modo edición:', this.edicion);
       this.init();
     });
 
@@ -63,6 +64,7 @@ export class InsertarComponent implements OnInit{
   }
 
   insertar(): void {
+    console.log('Formulario válido:', this.form.valid);
     if (this.form.valid) {
       this.illness.idIllness = this.form.value.codigo;
       this.illness.nameIllness = this.form.value.hnombre;

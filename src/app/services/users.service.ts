@@ -19,6 +19,9 @@ export class UsersService {
   list(){
     return this.http.get<Users[]>(`${base_url}/listarini`);
   }
+
+  
+
   insert(u: Users){
     return this.http.post(`${base_url}/crearcuenta`, u);
   }

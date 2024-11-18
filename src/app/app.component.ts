@@ -46,10 +46,10 @@ export class AppComponent {
     return this.role === 'PACIENTE' || 'ADMINISTRADOR';
   }
   isDoctor() {
-    return this.role === 'PACIENTE' || 'ADMINISTRADOR';
+    return this.role === 'DOCTOR' || 'ADMINISTRADOR';
   }
   isNutricionista() {
-    return this.role === 'PACIENTE' || 'ADMINISTRADOR';
+    return this.role === 'NUTRICIONISTA' || 'ADMINISTRADOR';
   }
   isAdmin() {
     return this.role === 'ADMINISTRADOR';

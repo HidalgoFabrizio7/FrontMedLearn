@@ -99,13 +99,14 @@ export class InsertarusComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.uS.getidMayor().subscribe((data: number) => {
-      this.idus=data+1;
-    });
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
-      this.edicion = data['id'] > 0;
+      this.edicion = data['id'] != null;
       this.init();
+    });
+
+    this.uS.getidMayor().subscribe((data: number) => {
+      this.idus=data+1;
     });
 
     this.form = this.formBuilder.group({
@@ -203,7 +204,7 @@ export class InsertarusComponent implements OnInit{
     if (file) {
         this.fileName = this.normalizeFileName(file.name); // Normaliza el nombre del archivo
         this.form.get('hcertificado')!.setValue(this.fileName); // Establece el nombre del archivo en el campo `himage`
-  
+
         const reader = new FileReader();
         reader.onload = () => {
             this.imageURL = reader.result; // Previsualización de la imagen
