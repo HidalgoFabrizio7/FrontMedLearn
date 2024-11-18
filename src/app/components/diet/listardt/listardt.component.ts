@@ -1,28 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Params, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { Diet } from '../../../models/Diet';
 import { DietService } from '../../../services/diet.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listardt',
   standalone: true,
-  imports: [MatTableModule, MatIconModule,RouterModule, MatCardModule, MatDividerModule,CommonModule],
+  imports: [
+    MatTableModule,
+    MatIconModule,
+    RouterModule,
+    MatCardModule,
+    MatDividerModule,
+    CommonModule],
   templateUrl: './listardt.component.html',
   styleUrl: './listardt.component.css'
 })
 export class ListardtComponent implements OnInit{
+  historial: boolean=false;
+  idUser: number = 0;
+
   datasource: MatTableDataSource<Diet> = new MatTableDataSource();
-  constructor(private dT: DietService) {}
+  constructor(
+    private dT: DietService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.dT.list().subscribe((data)=>{
-      this.datasource=new MatTableDataSource(data)
+    this.route.params.subscribe((data: Params) => {
+      this.idUser = data['id'];
+      this.historial = data['id'] != null;
     });
+
+    if (this.historial) {
+      this.dT.listTreatmentsByUserId(this.idUser).subscribe((data)=>{
+        this.datasource=new MatTableDataSource(data)
+      });
+    } else{
+      this.dT.list().subscribe((data)=>{
+        this.datasource=new MatTableDataSource(data)
+      });
+    }
+
     this.dT.getList().subscribe((data)=>{
       this.datasource=new MatTableDataSource(data)
     });
@@ -35,7 +60,6 @@ export class ListardtComponent implements OnInit{
       });
     });
   }
-  
   startDiet(diet: Diet): void {
     diet.startDayDiet = new Date(); // Captura la fecha actual al hacer clic
     this.dT.update(diet).subscribe(() => {
@@ -78,6 +102,5 @@ export class ListardtComponent implements OnInit{
       }
     }
 
-    
   }
 

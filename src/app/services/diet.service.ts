@@ -4,6 +4,7 @@ import { Diet } from '../models/Diet';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { QuantityBydietsinicidasydietsfinalizadasbyuser } from '../models/QuantityBydietsinicidasydietsfinalizadasbyuser';
+
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ const base_url = environment.base;
 export class DietService {
   private url = `${base_url}/Dietas`;
   private listaCambio = new Subject<Diet[]>();
-  
+
   constructor(private http: HttpClient) { }
 
   list() {
@@ -31,14 +32,21 @@ export class DietService {
   delete(id: number){
     return this.http.delete(`${this.url}/${id}`);
   }
-  
+
+  listTreatmentsByUserId(id:number){
+    return this.http.get<Diet[]>(`${this.url}/listarporusuaario/${id}`)
+  }
+
   listId(id: number) {
     return this.http.get<Diet>(`${this.url}/${id}`);
   }
-   update(di:Diet){
+
+  update(di:Diet){
     return this.http.put(this.url,di);
-   }
-   getQuantityBydietsinicidasydietsfinalizadasbyuser():Observable<QuantityBydietsinicidasydietsfinalizadasbyuser[]>{
+  }
+
+  getQuantityBydietsinicidasydietsfinalizadasbyuser():Observable<QuantityBydietsinicidasydietsfinalizadasbyuser[]>{
     return this.http.get<QuantityBydietsinicidasydietsfinalizadasbyuser[]>(`${this.url}/cantidaddedietasiniciadasandfinalizadasporusuario`);
-   }
+  }
+
 }

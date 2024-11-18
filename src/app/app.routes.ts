@@ -6,8 +6,38 @@ import { DietComponent } from './components/diet/diet.component';
 import { InsertardtComponent } from './components/diet/insertardt/insertardt.component';
 import { UsersComponent } from './components/users/users.component';
 import { InsertarusComponent } from './components/users/insertarus/insertarus.component';
+import {TreatmentsComponent} from './components/treatments/treatments.component';
+import {InsertartrComponent} from './components/treatments/insertartr/insertartr.component';
+import {ReportesComponent} from './components/reportes/reportes.component';
+import { HospitalComponent } from './components/hospital/hospital.component';
+import { CrearhpComponent } from './components/hospital/crearhp/crearhp.component';
+import { NumberdietinityfinComponent } from './components/reportes/numberdietinityfin/numberdietinityfin.component';
+import { ProporcionUsersComponent } from './components/reportes/proporcion-users/proporcion-users.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { seguridadGuard } from '../guard/seguridad.guard';
+import { HistorialComponent } from './components/historial/historial.component';
+import { HistorialdietasComponent } from './components/historial/historialdietas/historialdietas.component';
+import { ListardtComponent } from './components/diet/listardt/listardt.component';
 
 export const routes: Routes = [
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+    },
+    {
+        path: 'nuevacuenta', component: InsertarusComponent,
+        children:[
+          {
+              path: 'nuevohp/:id', component: CrearhpComponent,
+          },
+        ],
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+    },
     {
         path: 'Enfermedades', component: IllnessComponent,
         children:[
@@ -18,7 +48,25 @@ export const routes: Routes = [
                 path: 'edicionesenf/:id', component:InsertarComponent,
             },
         ],
+        canActivate: [seguridadGuard],
     },
+
+    {
+        path: 'reportes', component: ReportesComponent,
+        children:[
+            {
+                path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
+            },
+            {
+                path: 'edicionesrep/:id', component:InsertarComponent,
+            },
+            {
+                path: 'proportionusers', component: ProporcionUsersComponent,
+            },
+        ],
+        canActivate: [seguridadGuard],
+    },
+
     {
         path:'Dietas', component:DietComponent,
         children:[
@@ -28,7 +76,11 @@ export const routes: Routes = [
             {
                 path:'edicionesdt/:id', component:InsertardtComponent,
             },
+            {
+                path: ':id', component: DietComponent, // Ruta para ver detalles de la dieta de una enfermedad específica
+            },
         ],
+        canActivate: [seguridadGuard],
     },
 
     {
@@ -37,11 +89,46 @@ export const routes: Routes = [
           {
               path: 'nuevous', component: InsertarusComponent,
           },
-          {
-            path:'dardebaja/:id', component: InsertarusComponent,
-          },
       ],
+    },
+
+    {
+    path: 'reportes', component: ReportesComponent,
+    children:[
+        {
+            path: 'numberdietinityfinal', component: NumberdietinityfinComponent,
+        },
+    ],
+    },
+
+    {
+      path:'Hospitales', component:HospitalComponent,
+    },
+
+    {
+        path: 'homes',
+        component: HomeComponent,
+        canActivate: [seguridadGuard],
+    },
+
+  {
+    path:'Tratamientoss', component:TreatmentsComponent,
+    children:[
+        {
+            path: 'nuevotr', component: InsertartrComponent,
+        },
+        {
+            path:'edicionestr/:id', component:InsertartrComponent,
+        },
+    ],
+    canActivate: [seguridadGuard],
 
   },
+
+  {
+    path:'historial/:id', component:ListardtComponent,
+    canActivate: [seguridadGuard],
+  },
+
 ];
 
